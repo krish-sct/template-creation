@@ -7,7 +7,7 @@ import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import Stack from "@mui/material/Stack";
-import { Context } from "./Provider";
+import { Context } from "../../Provider";
 import { useContext } from "react";
 const statusCode = ["Pending", "Completed", "Redo"];
 
@@ -21,7 +21,7 @@ const style = {
   p: 4
 };
 
-export default function ListModal() {
+export default function ModalPopUp() {
   const { open, handleClose, handleOpen } = useContext(Context);
 
   return (

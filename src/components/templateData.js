@@ -11,6 +11,7 @@ export const template = {
     "Grid",
     "Modal Popup",
     "Form",
-    "Image Gallery"
+    "Image Gallery",
+    "Menu"
   ]
 };

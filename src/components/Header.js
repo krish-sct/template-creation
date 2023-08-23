@@ -9,6 +9,7 @@ import Box from "@mui/material/Box";
 import BuildTemplate from "../../src/components/Build/BuildTemplate";
 import BuildForm from "./Build/BuildForm";
 import FillUpTemplate from "./FillUp/FillUpTemplate";
+import TemplateOne from "./PreBuildTemplate/TemplateOne";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -84,6 +85,7 @@ export default function Header() {
         <TabPanel value={value} index={2} dir={theme.direction}>
           Preview Template
           <br />
+          <TemplateOne />
         </TabPanel>
       </SwipeableViews>
     </Box>

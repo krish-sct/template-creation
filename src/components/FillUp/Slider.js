@@ -53,7 +53,7 @@ function Slider() {
   };
 
   return (
-    <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
+    <Box sx={{ maxWidth: 600, flexGrow: 1 }}>
       <Paper
         square
         elevation={0}
@@ -81,7 +81,7 @@ function Slider() {
                 sx={{
                   height: 255,
                   display: "block",
-                  maxWidth: 400,
+                  maxWidth: 600,
                   overflow: "hidden",
                   width: "100%"
                 }}
