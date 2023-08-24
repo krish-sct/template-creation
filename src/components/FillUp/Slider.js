@@ -9,36 +9,19 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import { Context } from "../../Provider";
+import { Grid, IconButton } from "@mui/material";
+import { HighlightOff } from "@mui/icons-material";
+import AddImageToSlider from "./AddImageToSlider";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-const images = [
-  {
-    label: "San Francisco – Oakland Bay Bridge, United States",
-    imgPath:
-      "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60"
-  },
-  {
-    label: "Bird",
-    imgPath:
-      "https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60"
-  },
-  {
-    label: "Bali, Indonesia",
-    imgPath:
-      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250"
-  },
-  {
-    label: "Goč, Serbia",
-    imgPath:
-      "https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60"
-  }
-];
-
 function Slider() {
   const theme = useTheme();
+  const { edits, tempOne, setTempOne, handleEdits } = React.useContext(Context);
   const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = images.length;
+  const maxSteps = tempOne?.slider?.images?.length;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -49,23 +32,60 @@ function Slider() {
   };
 
   const handleStepChange = (step) => {
-    setActiveStep(step);
+    setActiveStep(step || 0);
   };
-
+  const handleRemoveImg = (data) => {
+    setTempOne((prev) => {
+      return {
+        ...prev,
+        slider: {
+          count:
+            prev?.slider?.images?.filter((e, i) => i !== Number(data))
+              ?.length || 0,
+          images:
+            prev?.slider?.images?.filter((e, i) => i !== Number(data)) || [],
+        },
+      };
+    });
+  };
   return (
     <Box sx={{ maxWidth: 600, flexGrow: 1 }}>
+      {!edits.slider ? (
+        <Grid>
+          <Button
+            size="small"
+            variant="outlined"
+            onClick={() => handleEdits("slider")}
+          >
+            Add an Image{" "}
+            <IconButton color="primary">
+              <AddCircleOutlineIcon />
+            </IconButton>
+          </Button>
+        </Grid>
+      ) : (
+        <AddImageToSlider />
+      )}
       <Paper
         square
         elevation={0}
         sx={{
           display: "flex",
           alignItems: "center",
+          justifyContent: "space-between",
           height: 50,
           pl: 2,
-          bgcolor: "background.default"
+          bgcolor: "background.default",
         }}
       >
-        <Typography>{images[activeStep].label}</Typography>
+        <Typography>{tempOne?.slider?.images[activeStep]?.label}</Typography>
+        {tempOne?.slider?.images?.length ? (
+          <IconButton color="error" onClick={() => handleRemoveImg(activeStep)}>
+            <HighlightOff />
+          </IconButton>
+        ) : (
+          ""
+        )}
       </Paper>
       <AutoPlaySwipeableViews
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
@@ -73,8 +93,8 @@ function Slider() {
         onChangeIndex={handleStepChange}
         enableMouseEvents
       >
-        {images.map((step, index) => (
-          <div key={step.label}>
+        {tempOne?.slider?.images?.map((step, index) => (
+          <div key={step?.label}>
             {Math.abs(activeStep - index) <= 2 ? (
               <Box
                 component="img"
@@ -83,7 +103,7 @@ function Slider() {
                   display: "block",
                   maxWidth: 600,
                   overflow: "hidden",
-                  width: "100%"
+                  width: "100%",
                 }}
                 src={step.imgPath}
                 alt={step.label}
@@ -100,7 +120,10 @@ function Slider() {
           <Button
             size="small"
             onClick={handleNext}
-            disabled={activeStep === maxSteps - 1}
+            disabled={
+              activeStep === maxSteps - 1 ||
+              tempOne?.slider?.images?.length === 0
+            }
           >
             Next
             {theme.direction === "rtl" ? (
@@ -111,7 +134,11 @@ function Slider() {
           </Button>
         }
         backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+          <Button
+            size="small"
+            onClick={handleBack}
+            disabled={activeStep === 0 || tempOne?.slider?.images?.length === 0}
+          >
             {theme.direction === "rtl" ? (
               <KeyboardArrowRight />
             ) : (

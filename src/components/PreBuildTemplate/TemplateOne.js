@@ -1,10 +1,21 @@
-import * as React from "react";
+import React, { useContext, useState } from "react";
 import Container from "@mui/material/Container";
 import MenuBar from "../FillUp/MenuBar";
 import Slider from "../FillUp/Slider";
-import { Grid, Typography } from "@mui/material";
-import CarouselComponent from "../FillUp/CarouselComponent";
-import CardList from "../FillUp/CardList";
+import {
+  Button,
+  FormControl,
+  Grid,
+  IconButton,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import { Context } from "../../Provider";
+//import CardList from "../FillUp/CardList";
 
 const images = [
   "https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg",
@@ -12,31 +23,105 @@ const images = [
   "https://mdbootstrap.com/img/Photos/Slides/img%20(23).jpg",
   // Add more image URLs here
 ];
-
+const headingSize = ["h1", "h2", "h3", "h4", "h5", "h6"];
 export default function TemplateOne() {
+  const { tempOne, edits, handleEdits, handleOnChange, handleSubmit } =
+    useContext(Context);
   return (
     <React.Fragment>
       <Container maxWidth="md">
         <MenuBar />
         <br />
         <Grid container spacing={2} justifyContent="center" alignItems="center">
-          <Grid item>
-            <Typography variant="h4" m={2}>
-              An all-in-one camera
+          <Grid item sx={{ display: "flex" }}>
+            <Typography variant={tempOne?.heading?.variant} m={2}>
+              {!edits.heading
+                ? tempOne?.heading?.text ||
+                  "Heading " + tempOne?.heading?.variant
+                : "Heading " + tempOne?.heading?.variant}
             </Typography>
+            {edits.heading ? (
+              <>
+                <TextField
+                  label="Heading"
+                  variant="outlined"
+                  value={tempOne?.heading?.text}
+                  onChange={(e) =>
+                    handleOnChange({
+                      key: "heading",
+                      type: "text",
+                      value: e.target.value,
+                    })
+                  }
+                />
+                <FormControl sx={{ m: 1, minWidth: 60 }} size="small">
+                  <Select
+                    value={tempOne?.heading?.variant}
+                    label="Size"
+                    onChange={(e) =>
+                      handleOnChange({
+                        key: "heading",
+                        type: "variant",
+                        value: e.target.value,
+                      })
+                    }
+                  >
+                    {headingSize.map((e, i) => (
+                      <MenuItem key={i} value={e}>
+                        {e}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </>
+            ) : (
+              ""
+            )}
+            <IconButton color="primary" onClick={() => handleEdits("heading")}>
+              {!edits.heading ? <EditIcon /> : <CheckCircleOutlineIcon />}
+            </IconButton>
+          </Grid>
+
+          <Grid sx={{ display: "flex", width: "100%" }} item>
             <Typography m={2} variant="body">
-              Since 2003, e-con Systems™ has been addressing the embedded camera
-              needs of different types of markets across the world. Over the
-              years, we have 'been there and done that' with consistency and
-              commitment to accelerating product development that, in turn,
-              create world-class industry experiences.
+              {!edits.para
+                ? tempOne?.para?.text || "Paragraph... "
+                : "Paragraph "}
             </Typography>
+            {edits.para ? (
+              <TextField
+                label="Paragraph "
+                variant="outlined"
+                value={tempOne?.para?.text}
+                multiline
+                rows={4}
+                fullWidth
+                onChange={(e) =>
+                  handleOnChange({
+                    key: "para",
+                    type: "text",
+                    value: e.target.value,
+                  })
+                }
+              />
+            ) : (
+              ""
+            )}
+            <IconButton color="primary" onClick={() => handleEdits("para")}>
+              {!edits.para ? <EditIcon /> : <CheckCircleOutlineIcon />}
+            </IconButton>
           </Grid>
           <Grid item>
             <Slider />
           </Grid>
-          <Grid item>
-            <CardList />
+          <Grid item sx={{ float: "right", width: "100%" }}>
+            <Button
+              sx={{ float: "right" }}
+              onClick={handleSubmit}
+              variant="outlined"
+            >
+              Submit
+            </Button>
           </Grid>
         </Grid>
       </Container>
