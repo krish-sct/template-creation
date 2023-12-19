@@ -17,7 +17,6 @@ export default function FillUpTemplate() {
   return (
     <Grid
       container
-      spacing={2}
       direction="column"
       justifyContent="center"
       alignItems="center"
@@ -32,49 +31,20 @@ export default function FillUpTemplate() {
               ) : (
                 ""
               )}
-              {template?.menu[tempId] === "Form" ? (
+              {template?.menu[tempId] === "Form" ? <p>Coming soon..</p> : ""}
+              {template?.menu[tempId] === "Modal Popup" ? <ModalPopUp /> : ""}
+              {template?.menu[tempId] === "Grid" ? <Grids /> : ""}
+              {template?.menu[tempId] === "Video" ? <p>Coming soon..</p> : ""}
+              {template?.menu[tempId] === "Text on Image" ? (
                 <p>Coming soon..</p>
               ) : (
                 ""
-              )}{template?.menu[tempId] === "Modal Popup" ? (
-                <ModalPopUp />
-              ) : (
-                ""
-              )}{template?.menu[tempId] === "Grid" ? (
-                <Grids />
-              ) : (
-                ""
-              )}{template?.menu[tempId] === "Video" ? (
-                <p>Coming soon..</p>
-              ) : (
-                ""
-              )}{template?.menu[tempId] === "Text on Image" ? (
-                <p>Coming soon..</p>
-              ) : (
-                ""
-              )}{template?.menu[tempId] === "Tabs" ? (
-                <TabsComponent />
-              ) : (
-                ""
-              )}{template?.menu[tempId] === "Button" ? (
-                <Buttons />
-              ) : (
-                ""
-              )}{template?.menu[tempId] === "Table" ? (
-                <Tables />
-              ) : (
-                ""
               )}
-              {template?.menu[tempId] === "Cards" ? (
-                <Cards />
-              ) : (
-                ""
-              )}
-              {template?.menu[tempId] === "Slider" ? (
-                <Slider />
-              ) : (
-                ""
-              )}
+              {template?.menu[tempId] === "Tabs" ? <TabsComponent /> : ""}
+              {template?.menu[tempId] === "Button" ? <Buttons /> : ""}
+              {template?.menu[tempId] === "Table" ? <Tables /> : ""}
+              {template?.menu[tempId] === "Cards" ? <Cards /> : ""}
+              {template?.menu[tempId] === "Slider" ? <Slider /> : ""}
             </div>
           );
         })}

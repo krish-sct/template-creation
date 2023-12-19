@@ -1,7 +1,7 @@
 export const template = {
   menu: [
+    "StickyButton",
     "Rich Text",
-    "Slider",
     "Cards",
     "Table",
     "Button",

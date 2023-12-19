@@ -4,6 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { Context } from "../../Provider";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -28,17 +29,18 @@ function CustomTabPanel(props) {
 CustomTabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired
+  value: PropTypes.number.isRequired,
 };
 
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`
+    "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 
 export default function TabsComponent() {
+  const { tempOne } = React.useContext(Context);
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {

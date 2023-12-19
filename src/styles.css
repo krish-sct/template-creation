@@ -2,3 +2,94 @@
   font-family: sans-serif;
   text-align: center;
 }
+.home {
+  float: left;
+  padding: 4px 8px;
+  display: flex;
+  width: 100%;
+}
+
+.sidebar {
+  background-color: whitesmoke;
+  width: 10%;
+}
+
+.component-list {
+  background-color: white;
+  display: flex;
+  margin-top: 4px;
+  width: 120px;
+}
+
+.component-name {}
+
+.template {
+  margin-left: 8px;
+  width: 40%;
+  /* max-height: 800px; */
+}
+
+.template-component {
+  display: flex;
+  margin-top: 4px;
+  padding: 14px;
+  border: 1px dotted grey;
+
+}
+
+.close-icon {
+  margin: 4px;
+  cursor: pointer;
+  color: red;
+  padding: 4px;
+  background-color: whitesmoke;
+}
+
+.close-icon:hover {
+  background-color: white;
+}
+
+.preview {
+  width: 48%;
+}
+
+.preview-wrapper {
+  padding: 12px;
+  float: left;
+}
+
+.header {
+  color: navy;
+  float: left;
+  width: 100%;
+  text-align: left;
+}
+
+.title {
+  color: green;
+  float: left;
+  line-break: auto;
+  text-align: left;
+}
+
+.subTitle {
+  color: black;
+  float: left;
+  line-break: auto;
+  text-align: left;
+  width: 100%;
+}
+
+.description {
+  color: grey;
+  float: left;
+  text-align: left;
+  font-size: 15px;
+  line-height: 1.4rem;
+  padding-bottom: 10px;
+}
+
+.images {
+  margin: auto;
+  margin: 8px;
+}

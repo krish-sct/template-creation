@@ -10,6 +10,7 @@ import BuildTemplate from "../../src/components/Build/BuildTemplate";
 import BuildForm from "./Build/BuildForm";
 import FillUpTemplate from "./FillUp/FillUpTemplate";
 import TemplateOne from "./PreBuildTemplate/TemplateOne";
+import TemplateTwo from "./PreBuildTemplate/TemplateTwo";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -34,7 +35,7 @@ function TabPanel(props) {
 function a11yProps(index) {
   return {
     id: `full-width-tab-${index}`,
-    "aria-controls": `full-width-tabpanel-${index}`
+    "aria-controls": `full-width-tabpanel-${index}`,
   };
 }
 
@@ -63,7 +64,8 @@ export default function Header() {
         >
           <Tab label="Build Template" {...a11yProps(0)} />
           <Tab label="Fill up Template" {...a11yProps(1)} />
-          <Tab label="Preview Template" {...a11yProps(2)} />
+          <Tab label="Template One" {...a11yProps(2)} />
+          <Tab label="Template Two" {...a11yProps(3)} />
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -83,9 +85,14 @@ export default function Header() {
           <FillUpTemplate />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          Preview Template
+          Template One
           <br />
           <TemplateOne />
+        </TabPanel>
+        <TabPanel value={value} index={3} dir={theme.direction}>
+          Template Two
+          <br />
+          <TemplateTwo />
         </TabPanel>
       </SwipeableViews>
     </Box>

@@ -28,7 +28,7 @@ function createArray(n) {
 let templateArray = createArray(template?.menu?.length);
 
 export default function BuildTemplate() {
-  const { template1, setTemplate1 } = React.useContext(Context);
+  const { template1, setTemplate1, setTempOne } = React.useContext(Context);
   const [checked, setChecked] = React.useState([]);
   const [left, setLeft] = React.useState(templateArray || []);
   const [right, setRight] = React.useState([]);
@@ -74,6 +74,21 @@ export default function BuildTemplate() {
     setTemplate1((data) => {
       return { ...data, template: right };
     });
+    if (right.includes(0)) {
+      setTempOne((prev) => {
+        return {
+          ...prev,
+          customComponent: { ...prev.customComponent, stickyButton: true },
+        };
+      });
+    } else {
+      setTempOne((prev) => {
+        return {
+          ...prev,
+          customComponent: { ...prev.customComponent, stickyButton: false },
+        };
+      });
+    }
   }, [right]);
 
   const customList = (items) => (
@@ -95,7 +110,7 @@ export default function BuildTemplate() {
                   tabIndex={-1}
                   disableRipple
                   inputProps={{
-                    "aria-labelledby": labelId
+                    "aria-labelledby": labelId,
                   }}
                 />
               </ListItemIcon>
