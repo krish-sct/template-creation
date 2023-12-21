@@ -7,29 +7,35 @@ const TemplatePreview = ({ templateData }) => {
             <div>
                 {templateData?.map((e, i) => {
                     return (
-                        <div key={i} >
-                            {e.key === 'header' ? <div>
-                                <h2 className='header'>{e.value}</h2>
+                        <div key={i}>
+                            {e?.key === 'header' ? <div>
+                                <h2 className='header'>{e?.value}</h2>
                             </div> : ""}
-                            {e.key === 'title' ? <div>
-                                <h3 className='title'>{e.value}</h3>
+                            {e?.key === 'title' ? <div>
+                                <h3 className='title'>{e?.value}</h3>
                             </div> : ""}
-                            {e.key === 'subTitle' ? <div>
-                                <b className='subTitle'>{e.value}</b>
+                            {e?.key === 'subTitle' ? <div>
+                                <b className='subTitle'>{e?.value}</b>
                             </div> : ""}
-                            {e.key === 'description' ? <div className='description'>{e.value}</div> : ""}
-                            {e.key === 'images' ?
+                            {e?.key === 'description' ? <div className='description'>{e?.value}</div> : ""}
+                            {e?.key === 'images' ?
                                 <div className='images'>
-                                    {/* <ImageListItem> */}
-                                    <img
-                                        srcSet={e.value}
-                                        src={e.value}
-                                        alt={e.value}
-                                        loading="lazy"
-                                    />
-                                    {/* </ImageListItem>  */}
+                                    {e?.imgs?.map((img, imgI) => {
+                                        return <img className='images-img' src={img?.src} alt={img?.alt} key={imgI} loading="lazy" />
+                                    })}
                                 </div>
                                 : ""}
+                            {e?.key === 'list' ?
+                                <div className='lists'>
+                                    <ul>
+                                        {e?.lists?.map((list, listI) => {
+                                            return <li className='list' key={listI}>{list?.value}</li>
+                                        })}
+                                    </ul>
+                                </div> : ""}
+                            {e?.key === 'htmlEditor' ? <div className='htmlEditor'>
+                                <div dangerouslySetInnerHTML={{ __html: e?.value }} />
+                            </div> : ''}
                         </div>
                     )
                 })}

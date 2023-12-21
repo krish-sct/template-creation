@@ -2,9 +2,11 @@
   font-family: sans-serif;
   text-align: center;
 }
+.flex {
+  display: flex;
+}
 .home {
   float: left;
-  padding: 4px 8px;
   display: flex;
   width: 100%;
 }
@@ -12,6 +14,7 @@
 .sidebar {
   background-color: whitesmoke;
   width: 10%;
+  padding: 1rem;
 }
 
 .component-list {
@@ -34,9 +37,19 @@
   margin-top: 4px;
   padding: 14px;
   border: 1px dotted grey;
-
 }
 
+.img-component,
+.list-component {
+  flex-direction: column;
+}
+
+.add-icon {
+  margin-left: auto;
+  cursor: pointer;
+  padding: 4px;
+  background-color: whitesmoke;
+}
 .close-icon {
   margin: 4px;
   cursor: pointer;
@@ -45,7 +58,8 @@
   background-color: whitesmoke;
 }
 
-.close-icon:hover {
+.close-icon:hover,
+.add-icon:hover {
   background-color: white;
 }
 
@@ -88,8 +102,15 @@
   line-height: 1.4rem;
   padding-bottom: 10px;
 }
-
+.list {
+  color: gray;
+  text-align: left;
+  font-size: 15px;
+}
 .images {
   margin: auto;
   margin: 8px;
+}
+.images-img {
+  margin: 4px;
 }

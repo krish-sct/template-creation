@@ -258,14 +258,14 @@ export let template = {
       tag: "div",
       type: "object",
       key: "list",
-      component: [
+      lists: [
         {
           tag: "input",
           type: "text",
           key: "listText",
           value: "",
           description: "",
-          placeholder: "",
+          placeholder: "Enter the list data",
           min: 5,
           max: 100,
         },
@@ -275,9 +275,10 @@ export let template = {
     },
     Html: {
       key: "htmlEditor",
-      content: {},
+      value: "",
       isRequired: true,
       isActive: true,
+      placeholder: "Enter the HTML code here",
     },
     Button: [
       {
