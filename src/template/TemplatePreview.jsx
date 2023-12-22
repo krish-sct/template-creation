@@ -36,6 +36,12 @@ const TemplatePreview = ({ templateData }) => {
                             {e?.key === 'htmlEditor' ? <div className='htmlEditor'>
                                 <div dangerouslySetInnerHTML={{ __html: e?.value }} />
                             </div> : ''}
+                            {e?.key === 'banner' ? <div class="banner">
+                                <img src="https://picsum.photos/800/300" alt="Nature Banner" />
+                                <h1>Welcome to our Website</h1>
+                                <p>Discover amazing things here!</p>
+                                <button>Explore Now</button>
+                            </div> : ''}
                         </div>
                     )
                 })}
