@@ -4,6 +4,7 @@ import { IconButton } from '@mui/material'
 import { Add } from '@mui/icons-material'
 import ComponentCreation from './ComponentCreation'
 import TemplatePreview from './TemplatePreview'
+import { swapElements } from './common'
 // let data = [
 //     {
 //         tag: "input",
@@ -157,6 +158,12 @@ const Home = () => {
             return newData
         })
     }
+    const handleSwap = async (index1, index2) => {
+        setTemplateData((prev) => {
+            let data = swapElements([...prev], index1, index2)
+            return data
+        })
+    }
     useEffect(() => {
         console.log({ templateData });
     }, [templateData])
@@ -178,7 +185,7 @@ const Home = () => {
                 </div>
             </div>
             <div className='template'>
-                <ComponentCreation templateData={templateData} handleRemoveComponent={handleRemoveComponent} handleUpdateValue={handleUpdateValue} handleAddImg={handleAddImg} handleAddList={handleAddList} />
+                <ComponentCreation templateData={templateData} handleRemoveComponent={handleRemoveComponent} handleUpdateValue={handleUpdateValue} handleAddImg={handleAddImg} handleAddList={handleAddList} handleSwap={handleSwap} />
             </div>
             <div className='preview'>
                 <TemplatePreview templateData={templateData} />
