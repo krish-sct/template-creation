@@ -42,6 +42,9 @@ const TemplatePreview = ({ templateData }) => {
                                 <p>Discover amazing things here!</p>
                                 <button>Explore Now</button>
                             </div> : ''}
+                            {e?.key === 'date' ? <div>
+                                <div className='date'>{e?.value}</div>
+                            </div> : ""}
                         </div>
                     )
                 })}

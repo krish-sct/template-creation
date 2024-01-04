@@ -291,5 +291,11 @@ export let template = {
         isActive: true,
       },
     ],
+    Date: {
+      key: "date",
+      value: "",
+      isRequired: true,
+      isActive: true,
+    },
   },
 };

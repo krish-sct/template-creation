@@ -56,8 +56,13 @@ const ComponentCreation = ({ templateData, handleRemoveComponent, handleUpdateVa
                                     <Close fontSize='12' className='close-icon' onClick={() => handleRemoveComponent(i, '')} /> */}
                                     <Editor handleValue={handleChange} i={i} />
                                     <Close fontSize='12' className='close-icon' onClick={() => handleRemoveComponent(i, '')} />
-                                </div>
-                                    : <div className='template-component' key={i}>
+                                </div> :
+                                    (e?.key === 'date') ? <div className='template-component' key={i}>
+                                        {/* <TextField type='date' ref={templateData?.length === i + 1 ? lastDivRef : null} focused={templateData?.length === i + 1} value={e?.value} size='small' multiline rows={e?.key === "description" ? 3 : 1} placeholder={e?.placeholder} onChange={(e) => handleChange(e?.target?.value, i, '')} /> */}
+                                        <input type="date" name="" id="" onChange={(e) => handleChange(e?.target?.value, i, '')} value={e?.value} />
+                                        <Close fontSize='12' className='close-icon' onClick={() => handleRemoveComponent(i, '')} />
+                                    </div> :
+                                        <div className='template-component' key={i}>
                                         <TextField ref={templateData?.length === i + 1 ? lastDivRef : null} focused={templateData?.length === i + 1} fullWidth value={e?.value} size='small' multiline rows={e?.key === "description" ? 3 : 1} placeholder={e?.placeholder} onChange={(e) => handleChange(e?.target?.value, i, '')} />
                                         <Close fontSize='12' className='close-icon' onClick={() => handleRemoveComponent(i, '')} />
                                         <ArrowUpward fontSize='12' className='add-icon' onClick={() => handleSwapUpDown(i, true)} />
