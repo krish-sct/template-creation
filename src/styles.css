@@ -114,3 +114,12 @@
 .images-img {
   margin: 4px;
 }
+.date {
+  text-align: left;
+  width: 100%;
+}
+
+.htmlEditor {
+  text-align: left;
+  width: 100%;
+}

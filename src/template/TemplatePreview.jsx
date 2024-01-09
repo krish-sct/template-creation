@@ -1,6 +1,11 @@
 import React from 'react'
+import HTMLPreview from './HTMLPreview'
 
 const TemplatePreview = ({ templateData }) => {
+    const handleDate = (value) => {
+        let date = new Date(value)
+        return (date.toLocaleDateString()) || value;
+    }
     return (
         <div className='preview-wrapper'>
             <h4>Template Preview</h4>
@@ -33,9 +38,6 @@ const TemplatePreview = ({ templateData }) => {
                                         })}
                                     </ul>
                                 </div> : ""}
-                            {e?.key === 'htmlEditor' ? <div className='htmlEditor'>
-                                <div dangerouslySetInnerHTML={{ __html: e?.value }} />
-                            </div> : ''}
                             {e?.key === 'banner' ? <div class="banner">
                                 <img src="https://picsum.photos/800/300" alt="Nature Banner" />
                                 <h1>Welcome to our Website</h1>
@@ -43,8 +45,11 @@ const TemplatePreview = ({ templateData }) => {
                                 <button>Explore Now</button>
                             </div> : ''}
                             {e?.key === 'date' ? <div>
-                                <div className='date'>{e?.value}</div>
+                                <div className='date'>{handleDate(e?.value)}</div>
                             </div> : ""}
+                            {e?.key === 'htmlEditor' ? <div className='htmlEditor'>
+                                <HTMLPreview data={e?.value} />
+                            </div> : ''}
                         </div>
                     )
                 })}

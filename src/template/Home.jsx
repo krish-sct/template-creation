@@ -171,7 +171,7 @@ const Home = () => {
         <div className='home'>
             <div className='sidebar'>
                 <h4>Components</h4>
-                <div>
+                {/* <div>
                     {
                         Object.keys(template?.components)?.map((e, i) => {
                             return (
@@ -182,10 +182,10 @@ const Home = () => {
                             )
                         })
                     }
-                </div>
+                </div> */}
             </div>
             <div className='template'>
-                <ComponentCreation templateData={templateData} handleRemoveComponent={handleRemoveComponent} handleUpdateValue={handleUpdateValue} handleAddImg={handleAddImg} handleAddList={handleAddList} handleSwap={handleSwap} />
+                <ComponentCreation templateData={templateData} setTemplateData={setTemplateData} handleRemoveComponent={handleRemoveComponent} handleUpdateValue={handleUpdateValue} handleAddImg={handleAddImg} handleAddList={handleAddList} handleSwap={handleSwap} />
             </div>
             <div className='preview'>
                 <TemplatePreview templateData={templateData} />

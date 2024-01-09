@@ -1,12 +1,14 @@
 import { Add, ArrowDownward, ArrowUpward, Close } from '@mui/icons-material'
-import { MenuItem, Select, TextField } from '@mui/material'
+import { Button, MenuItem, Select, TextField } from '@mui/material'
 import Editor from './Editor'
 import { useEffect, useRef, useState } from 'react'
+import { preDefinedTemplate } from './common'
 let template = ['Template Name',
     'Careers', 'Articles', 'Events & Tradeshows', 'FAQ', 'News', 'Newsletters', 'Press Release', 'Podcasts', 'Testimonials'
 ]
-const ComponentCreation = ({ templateData, handleRemoveComponent, handleUpdateValue, handleAddImg, handleAddList, handleSwap }) => {
+const ComponentCreation = ({ templateData, setTemplateData, handleRemoveComponent, handleUpdateValue, handleAddImg, handleAddList, handleSwap }) => {
     const [templateName, setTemplateName] = useState('Template Name')
+    const [newTemplate, setNewTemplate] = useState([])
     const lastDivRef = useRef(null);
     const handleChange = (value, i, component, componentIndex) => {
         handleUpdateValue(value, i, component, componentIndex)
@@ -14,11 +16,46 @@ const ComponentCreation = ({ templateData, handleRemoveComponent, handleUpdateVa
     const handleSwapUpDown = (index, isUp) => {
         handleSwap(index, isUp ? (index - 1) : (index + 1))
     }
+    const handleSubmit = () => {
+        const object = {};
+        templateData?.forEach((element, index) => {
+            object[element.key] = element;
+        });
+        let data = {
+            "components": object
+        }
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify(data);
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("http://localhost:7234/createArticles/" + templateName, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                console.log(result)
+                setTemplateName("Template Name")
+                setTemplateData([])
+            })
+            .catch(error => console.log('error', error));
+    }
     useEffect(() => {
         if (lastDivRef.current) {
             lastDivRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
         }
     }, [templateData]);
+    useEffect(() => {
+        if (templateName !== template[0]) {
+            setTemplateData(preDefinedTemplate.filter((e) => e.template === templateName)[0]?.components)
+        }
+    }, [templateName])
+
     return (
         <div>
             <h4><Select label='Template Name' size='small' value={templateName} onChange={(e) => setTemplateName(e?.target?.value)}>
@@ -52,8 +89,6 @@ const ComponentCreation = ({ templateData, handleRemoveComponent, handleUpdateVa
                                     <Add className='add-icon' onClick={() => handleAddList(i)} />
                                 </div> :
                                 (e?.key === 'htmlEditor') ? <div className='template-component' key={i}>
-                                    {/* <TextField fullWidth value={e?.value} size='small' multiline rows={20} placeholder={e?.placeholder} onChange={(e) => handleChange(e?.target?.value, i, '')} />
-                                    <Close fontSize='12' className='close-icon' onClick={() => handleRemoveComponent(i, '')} /> */}
                                     <Editor handleValue={handleChange} i={i} />
                                     <Close fontSize='12' className='close-icon' onClick={() => handleRemoveComponent(i, '')} />
                                 </div> :
@@ -71,6 +106,7 @@ const ComponentCreation = ({ templateData, handleRemoveComponent, handleUpdateVa
                     )
                 })}
             </div>
+            <Button variant="contained" color="primary" onClick={handleSubmit}>Submit</Button>
         </div>
     )
 }
