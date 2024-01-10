@@ -1,16 +1,26 @@
 import React from 'react'
 import HTMLPreview from './HTMLPreview'
+import Videos from './Videos'
 
-const TemplatePreview = ({ templateData }) => {
+const TemplatePreview = ({ templateData, templateName }) => {
     const handleDate = (value) => {
         let date = new Date(value)
         return (date.toLocaleDateString()) || value;
+    }
+    const handleVideoData = (data) => {
+        let video = {}
+        data?.map((e, i) => {
+            if (e.key === 'title') video.title = e.value;
+            if (e.key === 'url') video.url = e.value;
+            if (e.key === 'category') video.category = e.value;
+        })
+        return video;
     }
     return (
         <div className='preview-wrapper'>
             <h4>Template Preview</h4>
             <div>
-                {templateData?.map((e, i) => {
+                {templateName !== 'Videos' ? templateData?.map((e, i) => {
                     return (
                         <div key={i}>
                             {e?.key === 'header' ? <div>
@@ -52,7 +62,12 @@ const TemplatePreview = ({ templateData }) => {
                             </div> : ''}
                         </div>
                     )
-                })}
+                }) : (<div>
+                    <div class="flex-container">
+                        <Videos data={handleVideoData(templateData)} />
+                    </div>
+                </div>
+                )}
             </div>
         </div>
     )

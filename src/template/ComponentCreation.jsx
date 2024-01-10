@@ -4,10 +4,9 @@ import Editor from './Editor'
 import { useEffect, useRef, useState } from 'react'
 import { preDefinedTemplate } from './common'
 let template = ['Template Name',
-    'Careers', 'Articles', 'Events & Tradeshows', 'FAQ', 'News', 'Newsletters', 'Press Release', 'Podcasts', 'Testimonials'
+    'Careers', 'Articles', 'Events & Tradeshows', 'FAQ', 'News', 'Newsletters', 'Press Release', 'Podcasts', 'Testimonials', 'Videos'
 ]
-const ComponentCreation = ({ templateData, setTemplateData, handleRemoveComponent, handleUpdateValue, handleAddImg, handleAddList, handleSwap }) => {
-    const [templateName, setTemplateName] = useState('Template Name')
+const ComponentCreation = ({ templateData, setTemplateData, handleRemoveComponent, handleUpdateValue, handleAddImg, handleAddList, handleSwap, templateName, setTemplateName }) => {
     const [newTemplate, setNewTemplate] = useState([])
     const lastDivRef = useRef(null);
     const handleChange = (value, i, component, componentIndex) => {

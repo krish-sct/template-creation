@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { template } from '../template-json'
-import { IconButton } from '@mui/material'
-import { Add } from '@mui/icons-material'
 import ComponentCreation from './ComponentCreation'
 import TemplatePreview from './TemplatePreview'
 import { swapElements } from './common'
@@ -82,6 +80,7 @@ import { swapElements } from './common'
 let data = []
 const Home = () => {
     const [templateData, setTemplateData] = useState(data)
+    const [templateName, setTemplateName] = useState('Template Name')
     const handleAddComponent = (component) => {
         setTemplateData((prev) => {
             return [...prev, template?.components?.[component]]
@@ -164,9 +163,9 @@ const Home = () => {
             return data
         })
     }
-    useEffect(() => {
-        console.log({ templateData });
-    }, [templateData])
+    // useEffect(() => {
+    //     console.log({ templateData });
+    // }, [templateData])
     return (
         <div className='home'>
             <div className='sidebar'>
@@ -185,10 +184,10 @@ const Home = () => {
                 </div> */}
             </div>
             <div className='template'>
-                <ComponentCreation templateData={templateData} setTemplateData={setTemplateData} handleRemoveComponent={handleRemoveComponent} handleUpdateValue={handleUpdateValue} handleAddImg={handleAddImg} handleAddList={handleAddList} handleSwap={handleSwap} />
+                <ComponentCreation templateData={templateData} setTemplateData={setTemplateData} handleRemoveComponent={handleRemoveComponent} handleUpdateValue={handleUpdateValue} handleAddImg={handleAddImg} handleAddList={handleAddList} handleSwap={handleSwap} templateName={templateName} setTemplateName={setTemplateName} />
             </div>
             <div className='preview'>
-                <TemplatePreview templateData={templateData} />
+                <TemplatePreview templateData={templateData} templateName={templateName} />
             </div>
         </div>
     )
