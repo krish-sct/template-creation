@@ -62,7 +62,8 @@ const TemplatePreview = ({ templateData, templateName }) => {
                             </div> : ''}
                         </div>
                     )
-                }) : (<div>
+                }) : (
+                    <div>
                     <div class="flex-container">
                         <Videos data={handleVideoData(templateData)} />
                     </div>
