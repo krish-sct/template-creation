@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-const Editor = ({ handleValue, i }) => {
-    const [text, setText] = useState('');
+const Editor = ({ handleValue, i, data }) => {
+    const quillRef = useRef(null);
+    const [text, setText] = useState(data || '');
 
     const modules = {
         toolbar: [
@@ -69,11 +70,27 @@ const Editor = ({ handleValue, i }) => {
         setText(value);
         handleValue(value, i, '')
     };
+    useEffect(() => {
+        const quill = quillRef.current.getEditor();
 
+        const handleTextChange = (delta, oldDelta, source) => {
+            // Handle text change here
+            //console.log('Text changed:', delta, oldDelta, source);
+        };
+
+        // Listen for the 'text-change' event
+        quill.on('text-change', handleTextChange);
+
+        // Cleanup function to remove the event listener when the component is unmounted
+        return () => {
+            quill.off('text-change', handleTextChange);
+        };
+    }, []);
     return (
         <div key={i}>
             <div className="text-editor">
                 <ReactQuill
+                    ref={quillRef}
                     theme="snow"
                     modules={modules}
                     formats={formats}

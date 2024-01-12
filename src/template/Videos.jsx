@@ -8,7 +8,7 @@ const Videos = ({ data }) => {
     }
     return (
 
-        <div class="flex-item">
+        <div className="flex-item">
             {/* <div><iframe class="ql-video" frameborder="0" allowfullscreen="true" src="https://www.youtube.com/embed/ZfIlAVucjrQ?showinfo=0"></iframe><p><br></p></div> */}
             <div>
                 <iframe

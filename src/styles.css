@@ -5,6 +5,9 @@
 .flex {
   display: flex;
 }
+.flex-column {
+  flex-direction: column;
+}
 .home {
   float: left;
   display: flex;
@@ -137,4 +140,13 @@
   font-weight: bold;
   font-size: 3em;
   text-align: center;
+}
+.htmlCode {
+  padding: 4px;
+  background-color: gainsboro;
+}
+
+.pointer:hover {
+  cursor: pointer;
+  opacity: 0.8;
 }

@@ -48,7 +48,7 @@ const TemplatePreview = ({ templateData, templateName }) => {
                                         })}
                                     </ul>
                                 </div> : ""}
-                            {e?.key === 'banner' ? <div class="banner">
+                            {e?.key === 'banner' ? <div className="banner">
                                 <img src="https://picsum.photos/800/300" alt="Nature Banner" />
                                 <h1>Welcome to our Website</h1>
                                 <p>Discover amazing things here!</p>
@@ -64,7 +64,7 @@ const TemplatePreview = ({ templateData, templateName }) => {
                     )
                 }) : (
                     <div>
-                    <div class="flex-container">
+                            <div className="flex-container">
                         <Videos data={handleVideoData(templateData)} />
                     </div>
                 </div>

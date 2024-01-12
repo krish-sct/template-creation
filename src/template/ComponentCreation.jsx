@@ -7,8 +7,8 @@ let template = ['Template Name',
     'Careers', 'Articles', 'Events & Tradeshows', 'FAQ', 'News', 'Newsletters', 'Press Release', 'Podcasts', 'Testimonials', 'Videos'
 ]
 const ComponentCreation = ({ templateData, setTemplateData, handleRemoveComponent, handleUpdateValue, handleAddImg, handleAddList, handleSwap, templateName, setTemplateName }) => {
-    const [newTemplate, setNewTemplate] = useState([])
     const lastDivRef = useRef(null);
+    const [isHTML, setIsHTML] = useState(false)
     const handleChange = (value, i, component, componentIndex) => {
         handleUpdateValue(value, i, component, componentIndex)
     }
@@ -38,16 +38,17 @@ const ComponentCreation = ({ templateData, setTemplateData, handleRemoveComponen
         fetch("http://localhost:7234/createArticles/" + templateName, requestOptions)
             .then(response => response.text())
             .then(result => {
-                console.log(result)
+                //console.log(result)
                 setTemplateName("Template Name")
                 setTemplateData([])
             })
             .catch(error => console.log('error', error));
     }
     useEffect(() => {
-        if (lastDivRef.current) {
-            lastDivRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
-        }
+        console.log({ templateData });
+        // if (lastDivRef.current) {
+        //     lastDivRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        // }
     }, [templateData]);
     useEffect(() => {
         if (templateName !== template[0]) {
@@ -88,16 +89,30 @@ const ComponentCreation = ({ templateData, setTemplateData, handleRemoveComponen
                                     <Add className='add-icon' onClick={() => handleAddList(i)} />
                                 </div> :
                                 (e?.key === 'htmlEditor') ? <div className='template-component' key={i}>
-                                    <Editor handleValue={handleChange} i={i} />
-                                    <Close fontSize='12' className='close-icon' onClick={() => handleRemoveComponent(i, '')} />
+                                    {!isHTML ? <Editor handleValue={handleChange} i={i} data={e?.value} /> : <div>
+                                        {e?.value}
+                                    </div>}
+                                    <div className='flex flex-column'>
+                                        <Close fontSize='12' className='close-icon' onClick={() => handleRemoveComponent(i, '')} />
+                                        <div className='htmlCode pointer' onClick={() => setIsHTML((prev) => !prev)} >{isHTML ? 'Editor' : 'HTML'}</div>
+                                    </div>
                                 </div> :
                                     (e?.key === 'date') ? <div className='template-component' key={i}>
                                         {/* <TextField type='date' ref={templateData?.length === i + 1 ? lastDivRef : null} focused={templateData?.length === i + 1} value={e?.value} size='small' multiline rows={e?.key === "description" ? 3 : 1} placeholder={e?.placeholder} onChange={(e) => handleChange(e?.target?.value, i, '')} /> */}
                                         <input type="date" name="" id="" onChange={(e) => handleChange(e?.target?.value, i, '')} value={e?.value} />
                                         <Close fontSize='12' className='close-icon' onClick={() => handleRemoveComponent(i, '')} />
                                     </div> :
+                                        (e?.key === 'category') ?
                                         <div className='template-component' key={i}>
-                                        <TextField ref={templateData?.length === i + 1 ? lastDivRef : null} focused={templateData?.length === i + 1} fullWidth value={e?.value} size='small' multiline rows={e?.key === "description" ? 3 : 1} placeholder={e?.placeholder} onChange={(e) => handleChange(e?.target?.value, i, '')} />
+                                                <Select label='Category' size='small' value={e?.value} onChange={(e) => handleChange(e?.target?.value, i, '')}>
+                                                    {e?.options?.map((category, i) => {
+                                                        return <MenuItem key={i} value={category?.value}>{category.label}</MenuItem>
+                                                    })}
+                                                </Select>
+                                                <Close fontSize='12' className='close-icon' onClick={() => handleRemoveComponent(i, '')} />
+                                            </div> :
+                                            <div className='template-component' key={i}>
+                                                <TextField ref={templateData?.length === i + 1 ? lastDivRef : null} focused={templateData?.length === i + 1} fullWidth value={e?.value || ''} size='small' multiline rows={e?.key === "description" ? 3 : 1} placeholder={e?.placeholder} onChange={(e) => handleChange(e?.target?.value, i, '')} />
                                         <Close fontSize='12' className='close-icon' onClick={() => handleRemoveComponent(i, '')} />
                                         <ArrowUpward fontSize='12' className='add-icon' onClick={() => handleSwapUpDown(i, true)} />
                                         <ArrowDownward fontSize='12' className='add-icon' onClick={() => handleSwapUpDown(i)} />
