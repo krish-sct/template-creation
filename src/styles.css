@@ -150,3 +150,24 @@
   cursor: pointer;
   opacity: 0.8;
 }
+.login-main {
+  padding: 24px;
+  width: 320px;
+  background-color: aliceblue;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.center {
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login-btn {
+  padding: 4px;
+  background-color: gainsboro;
+  width: 50%;
+  margin: auto;
+  border: 0;
+}

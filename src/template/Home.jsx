@@ -78,7 +78,7 @@ import { swapElements } from './common'
 
 // ]
 let data = []
-const Home = () => {
+const Home = ({ isLoged, role }) => {
     const [templateData, setTemplateData] = useState(data)
     const [templateName, setTemplateName] = useState('Template Name')
     const handleAddComponent = (component) => {
@@ -163,9 +163,33 @@ const Home = () => {
             return data
         })
     }
-    // useEffect(() => {
-    //     console.log({ templateData });
-    // }, [templateData])
+    const fetchTemplateData = async () => {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            //body: raw,
+            redirect: 'follow'
+        };
+        let data = await fetch(`http://localhost:7234/getAllDetails/${templateName}?page=1&limit=20`, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                return result;
+            })
+            .catch(error => console.log('error', error));
+        return data;
+    }
+    const handleGetTemplateData = async () => {
+        const res = await fetchTemplateData()
+        console.log({ res });
+    }
+    useEffect(() => {
+        console.log({ role });
+        if (role !== 'creator') {
+            handleGetTemplateData()
+        }
+    }, [role])
     return (
         <div className='home'>
             <div className='sidebar'>
@@ -184,7 +208,13 @@ const Home = () => {
                 </div> */}
             </div>
             <div className='template'>
-                <ComponentCreation templateData={templateData} setTemplateData={setTemplateData} handleRemoveComponent={handleRemoveComponent} handleUpdateValue={handleUpdateValue} handleAddImg={handleAddImg} handleAddList={handleAddList} handleSwap={handleSwap} templateName={templateName} setTemplateName={setTemplateName} />
+                {
+                    role === "creator" ? 
+                        <ComponentCreation templateData={templateData} setTemplateData={setTemplateData} handleRemoveComponent={handleRemoveComponent} handleUpdateValue={handleUpdateValue} handleAddImg={handleAddImg} handleAddList={handleAddList} handleSwap={handleSwap} templateName={templateName} setTemplateName={setTemplateName} /> 
+                        :
+                        'header list'
+
+                }
             </div>
             <div className='preview'>
                 <TemplatePreview templateData={templateData} templateName={templateName} />
