@@ -3,6 +3,8 @@ import { Button, MenuItem, Select, TextField } from '@mui/material'
 import Editor from './Editor'
 import { useEffect, useRef, useState } from 'react'
 import { preDefinedTemplate } from './common'
+import Header from './Header'
+import GenerateTemplateForm from './GenerateTemplateForm'
 let template = ['Template Name',
     'Careers', 'Articles', 'Events & Tradeshows', 'FAQ', 'News', 'Newsletters', 'Press Release', 'Podcasts', 'Testimonials', 'Videos'
 ]
@@ -57,12 +59,14 @@ const ComponentCreation = ({ templateData, setTemplateData, handleRemoveComponen
     }, [templateName])
 
     return (
-        <div>
-            <h4><Select label='Template Name' size='small' value={templateName} onChange={(e) => setTemplateName(e?.target?.value)}>
+        <div className="custom-layout-page">
+            <Header />
+            {/* <h4><Select label='Template Name' size='small' value={templateName} onChange={(e) => setTemplateName(e?.target?.value)}>
                 {template?.map((e, i) => {
                     return <MenuItem key={i} disabled={i === 0} value={e}>{e}</MenuItem>
                 })}
-            </Select> </h4>
+            </Select> </h4> */}
+            <GenerateTemplateForm />
             <div className='template-wrapper'>
                 {templateData?.map((e, i) => {
                     return (

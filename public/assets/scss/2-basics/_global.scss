@@ -1,0 +1,204 @@
+body,html {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    text-size-adjust: none;
+    text-decoration: unset;
+    color: $text-primary;
+    font-family: $body-font;
+    @include font-default;
+    height: 100vh;
+    font-size: 16px;
+    background: #f1f1f1;
+}
+
+a,
+a:hover {
+    color: inherit;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.img-fluid {
+    height: auto;
+    max-width: 100%;
+}
+
+.user-pic-mini{
+    min-width: 34px;
+    max-width: 34px;
+    min-height:34px;
+    max-height:34px;
+    @include sprite-img;
+    background-position: -192px 0;
+    img{
+        border-radius: 20px;
+    }
+    &.user-pic-mini-lg{
+        min-width: 50px;
+        max-width: 50px;
+        min-height: 50px;
+        max-height: 50px;
+        background-position: -531px 4px;    
+        border: 1px solid #dbdbdb;
+        border-radius: 50%;
+        img{
+            width: 100%
+        }
+    }
+}
+
+.user-name-role{
+    @include flex-direction-column;
+    gap: 2px;
+    align-items: flex-start;
+}
+
+.title-sm{ 
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+
+.title-sm-sub-text{}
+
+.title-normal{
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    white-space: nowrap;
+}
+
+.grid-system{
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 1.25rem;
+    align-self: stretch;
+    flex-wrap: wrap;
+}
+
+.custom-form-group{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.1875rem;
+    width: 100%;
+}
+
+.custom-label{
+    color: #303030;
+    font-family: Roboto;
+    font-size: 0.8125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 0.8125rem */
+}
+
+.custom-form-control{
+    display: flex;
+    padding: 0.625rem 0.8125rem;
+    align-items: center;
+    gap: 0.625rem;
+    align-self: stretch;
+    border-radius: 0.3125rem;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(240, 246, 249, 0.80);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.03rem;
+    color: #30343F;
+    &::placeholder{        
+        color: #A5AAAF;
+    }
+    &.lg-custom-form-control{
+        padding: 0.625rem 0.8rem 0.525rem 0.8rem;
+        font-size: 1rem;
+    }
+}
+
+.custom-form-left-icon{
+    position: relative;
+    width: 100%;
+    .material-symbols-rounded{
+        position: absolute;
+        width: 35px;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        color: #444444;
+        font-variation-settings: "FILL" 1;
+    }
+    .custom-form-control{
+        padding-left: 35px;
+        width: 100%;
+    }
+}
+
+textarea.custom-form-control{
+    height: 105px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    padding-right: 10px;
+    margin-right: 5px;
+    border-radius: 0;
+    box-shadow: -1px -1px 1px 0px rgba(0, 0, 0, 0.1);
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: #fff;
+    border-radius: 0;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #555555;    
+    border-radius: 10px;
+}
+
+// X-Small devices (portrait phones, less than 575px)
+// No media query for `xs` since this is the default
+
+// 7680x4320
+
+// XX-Large devices (larger desktops, 1399px and down)
+@media (max-width: 1399px) {
+    html,body{
+        font-size: 16px;
+    }
+}
+
+// X-Large devices (large desktops, 1199px and down)
+@media (max-width: 1199px) {
+    html,body{
+        font-size: 15px;
+    }
+}
+
+// Large devices (desktops, 991px and down)
+@media (max-width: 991px) { }
+
+// Medium devices (tablets, 767px and down)
+@media (max-width: 767px) { }
+
+// Small devices (landscape phones, 575px and down)
+@media (max-width: 575px) { }

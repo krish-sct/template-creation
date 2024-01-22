@@ -1,0 +1,52 @@
+.search-info-comp{
+    position: relative;
+    input{
+        width: 100%;
+        background: #fff;
+        padding: 15px 15px 15px 50px;
+        border-radius: 8px;
+        border: 1px solid #e5e5e5;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+    .search-icon{
+        max-width: 24px;
+        min-width: 24px;
+        max-height: 24px;
+        min-height: 24px;
+        position: absolute;
+        content: "";
+        top: 13px;
+        left: 15px;
+        transform: scale(0.7);
+        opacity: 0.6;
+        display: flex;
+        align-items: center;
+        @include sprite-img;
+        &.search-icon{
+            background-position: -456px 0;
+        }
+    }
+}
+
+// X-Small devices (portrait phones, less than 575px)
+// No media query for `xs` since this is the default
+
+// 7680x4320
+
+// XX-Large devices (larger desktops, 1399px and down)
+@media (max-width: 1399px) {
+}
+
+// X-Large devices (large desktops, 1199px and down)
+@media (max-width: 1199px) {
+}
+
+// Large devices (desktops, 991px and down)
+@media (max-width: 991px) { }
+
+// Medium devices (tablets, 767px and down)
+@media (max-width: 767px) { }
+
+// Small devices (landscape phones, 575px and down)
+@media (max-width: 575px) { }

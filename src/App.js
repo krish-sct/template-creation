@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Provider from "./Provider";
-import "./styles.css";
+// import "./styles.css";
 import Home from "./template/Home";
 import Login from "./template/Login";
 

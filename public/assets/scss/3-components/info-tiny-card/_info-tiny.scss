@@ -1,0 +1,41 @@
+.info-tiny-card{
+    @include flex-space-between-center;
+    padding: 9px 15px 8px 15px;
+    gap: 10px;
+    border-radius: 5px;
+    background: #fff;
+    .i-t-c-left{}
+    .i-t-c-right{}
+    .title-sm{
+        text-transform: uppercase;
+    }
+    .title-sm-sub-text{
+        font-size: 1rem
+    }
+    .title-sm, .title-sm-sub-text{
+        @include text-ellipse-1;
+        max-width: 140px;
+    }
+}
+
+// X-Small devices (portrait phones, less than 575px)
+// No media query for `xs` since this is the default
+
+// 7680x4320
+
+// XX-Large devices (larger desktops, 1399px and down)
+@media (max-width: 1399px) {
+}
+
+// X-Large devices (large desktops, 1199px and down)
+@media (max-width: 1199px) {
+}
+
+// Large devices (desktops, 991px and down)
+@media (max-width: 991px) { }
+
+// Medium devices (tablets, 767px and down)
+@media (max-width: 767px) { }
+
+// Small devices (landscape phones, 575px and down)
+@media (max-width: 575px) { }

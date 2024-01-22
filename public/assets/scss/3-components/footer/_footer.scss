@@ -1,0 +1,33 @@
+footer{
+    marquee{
+        padding: 7px 0 7px 0;
+        background: var(--primary-bg);
+        color: #fff;
+        font-size: 1rem;
+    }
+    &>marquee{
+        margin-bottom: -3px;
+    }
+}
+
+// X-Small devices (portrait phones, less than 575px)
+// No media query for `xs` since this is the default
+
+// 7680x4320
+
+// XX-Large devices (larger desktops, 1399px and down)
+@media (max-width: 1399px) {
+}
+
+// X-Large devices (large desktops, 1199px and down)
+@media (max-width: 1199px) {
+}
+
+// Large devices (desktops, 991px and down)
+@media (max-width: 991px) { }
+
+// Medium devices (tablets, 767px and down)
+@media (max-width: 767px) { }
+
+// Small devices (landscape phones, 575px and down)
+@media (max-width: 575px) { }

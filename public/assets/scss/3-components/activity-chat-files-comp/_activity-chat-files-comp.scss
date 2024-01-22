@@ -1,0 +1,75 @@
+.table-responsive{
+    overflow: auto;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;    
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    font-size: 1.1rem;
+    overflow: hidden;
+    box-shadow: 0px 0px 2px 2px #e5e5e5;
+
+    td[align="right"], th[align="right"] {
+        text-align: right;
+    }
+
+    td[align="center"], th[align="center"] {
+        text-align: center;
+    }
+
+    tr.tr-sub-total td{
+        font-weight: 700;
+    }
+    
+    th, td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #e5e5e5;
+        background: #fff;
+    }
+    tr{        
+        border-left: 1px solid #e5e5e5;
+        border-right: 1px solid #e5e5e5;
+    }
+    th{
+        font-weight: 500;
+        font-size: 0.95rem;
+    }
+    td{
+        font-weight: 500;
+        font-size: 1.1rem;
+        white-space: nowrap;
+    }
+    tr:not(.tr-sub-total):hover td {
+        background-color: #fafafa;
+    }
+    th {
+        background-color: #273c42;
+        color: white;
+    }
+}
+
+// X-Small devices (portrait phones, less than 575px)
+// No media query for `xs` since this is the default
+
+// 7680x4320
+
+// XX-Large devices (larger desktops, 1399px and down)
+@media (max-width: 1399px) {
+}
+
+// X-Large devices (large desktops, 1199px and down)
+@media (max-width: 1199px) {
+}
+
+// Large devices (desktops, 991px and down)
+@media (max-width: 991px) { }
+
+// Medium devices (tablets, 767px and down)
+@media (max-width: 767px) { }
+
+// Small devices (landscape phones, 575px and down)
+@media (max-width: 575px) { }

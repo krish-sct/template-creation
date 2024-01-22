@@ -193,7 +193,7 @@ const Home = ({ isLoged, role }) => {
     return (
         <div className='home'>
             <div className='sidebar'>
-                <h4>Components</h4>
+                {/* <h4>Components</h4> */}
                 {/* <div>
                     {
                         Object.keys(template?.components)?.map((e, i) => {

@@ -1,0 +1,215 @@
+.dropdown-comp {
+    position: relative;
+    display: inline-block;
+    .dropbtn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+    .d-c-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        .theme-selection-group{
+            background-color: #f9f9f9;
+            padding: 10px 15px 15px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            border: 1px solid #e5e5e5;
+            border-bottom: none;
+        }
+        .d-c-c-item {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            font-size: 1rem;
+            cursor: pointer;
+            &.active{
+                position: relative;
+                &::after{
+                    position: absolute;
+                    content: '';
+                    top: 15%;
+                    left: -1px;
+                    bottom: 15%;
+                    width: 6px;
+                    background: var(--primary-bg) !important;
+                    border-top-right-radius: 8px;
+                    border-bottom-right-radius: 8px;
+                }
+            }
+            &:hover {
+                background-color: #f1f1f1;
+            }
+        }
+    }
+    &:hover .d-c-content {
+        display: block;
+    }
+}
+
+.dropdown-comp.theme-dropdown{
+    .dropbtn{
+        min-width: 56px;
+        max-width: 56px;
+        min-height: 56px;
+        max-height: 56px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.2);
+        border: 1px solid #e5e5e5;
+        @include flex-all-center;
+        .theme-sprite-img{
+            min-width: 38px;
+            max-width: 38px;
+            min-height: 38px;
+            max-height: 38px;
+            background: url(../img/wondersoft-sprite-image.png) no-repeat;
+            background-position: -489px 2px;
+        }
+    }
+    .d-c-content {
+        right: 0;
+        background: transparent;
+        box-shadow: none;        
+        border-radius: 10px;
+        z-index: 10;
+        max-height: calc(100vh - 120px);
+        overflow: auto;
+        
+        .d-c-c-item{
+            background: #fff;
+            box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e5e5e5;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 20px;
+            &:hover{
+                background-color: #fafafa;
+            }
+            .color-sample-perview{
+                min-width: 20px;
+                max-width: 20px;
+                min-height: 20px;
+                max-height: 20px;
+                border-radius: 50%;
+            }
+            &.theme-red{
+                .color-sample-perview{
+                    background-color: var(--red-primary);
+                }
+                span{
+                    color: var(--red-primary);
+                }
+            }
+            &.theme-green{
+                .color-sample-perview{
+                    background-color: var(--green-primary);
+                }
+                span{
+                    color: var(--green-primary);
+                }
+            }
+            &.theme-yellow{
+                .color-sample-perview{
+                    background-color: var(--yellow-primary);
+                }
+                span{
+                    color: var(--yellow-primary);
+                }
+            }
+            &.theme-blue{
+                .color-sample-perview{
+                    background-color: var(--blue-primary);
+                }
+                span{
+                    color: var(--blue-primary);
+                }
+            }
+            &.theme-brown{
+                .color-sample-perview{
+                    background-color: var(--brown-primary);
+                }
+                span{
+                    color: var(--brown-primary);
+                }
+            }
+            &.theme-orange{
+                .color-sample-perview{
+                    background-color: var(--orange-primary);
+                }
+                span{
+                    color: var(--orange-primary);
+                }
+            }
+            &.theme-pink{
+                .color-sample-perview{
+                    background-color: var(--pink-primary);
+                }
+                span{
+                    color: var(--pink-primary);
+                }
+            }
+            &.theme-purple{
+                .color-sample-perview{
+                    background-color: var(--purple-primary);
+                }
+                span{
+                    color: var(--purple-primary);
+                }
+            }
+            .color-sample-text{
+                display: flex;
+                gap: 5px;
+                color: #5b5a59;
+                &>span{
+                    font-weight: 500;
+                }
+            }
+            &:first-child{
+                margin-top: 5px;
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+            }
+            &+.d-c-c-item{
+                border-top: 0;
+            }
+            &:last-child{
+                border-bottom-left-radius: 8px;
+                border-bottom-right-radius: 8px;
+            }
+        }
+    }
+}
+
+
+// X-Small devices (portrait phones, less than 575px)
+// No media query for `xs` since this is the default
+
+// 7680x4320
+
+// XX-Large devices (larger desktops, 1399px and down)
+@media (max-width: 1399px) {
+}
+
+// X-Large devices (large desktops, 1199px and down)
+@media (max-width: 1199px) {
+}
+
+// Large devices (desktops, 991px and down)
+@media (max-width: 991px) { }
+
+// Medium devices (tablets, 767px and down)
+@media (max-width: 767px) { }
+
+// Small devices (landscape phones, 575px and down)
+@media (max-width: 575px) { }

@@ -1,0 +1,289 @@
+button{
+    font-family: $body-font;
+    border: none;
+}
+
+:focus-visible {
+    outline: none;
+}
+
+.btn{
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.3px;
+    padding: 7px 17px 7px 17px;
+    cursor: pointer;
+    &.btn-primary{        
+        background: #1198FB;
+        box-shadow: 0px 4px 4px 0px rgba(11, 104, 255, 0.16);
+        color: #fff;
+        &.btn-outlined{
+            background: transparent;
+            border: 1px solid #1198fb;
+            color: #1198fb;
+        }
+    }
+    &.btn-icon-left{
+        padding: 7px 15px 8px 10px;
+        gap: 5px;
+        >.material-symbols-rounded{
+            font-size: 18px;
+        }
+    }
+    &.btn-icon{
+        padding: 0;
+        width: 34px;
+        height: 34px;
+        flex-shrink: 0;
+        border-radius: 5px;
+        border: unset;
+        background: #fff;
+        &>.material-symbols-rounded{
+            font-size: 18px;
+            color: #3D4A65;
+        }
+        &>svg{
+            width: 16px;
+            height: 16px;
+        }
+        &.active{
+            background: #E8F6F0;
+            &>.material-symbols-rounded{
+                color: #2F936C;
+            }
+            &>svg{
+                path{
+                    fill: #2F936C;
+                }
+            }
+        }
+        &:hover{
+            &>.material-symbols-rounded{
+                color: #2F936C;
+            }
+            &>svg{
+                path{
+                    fill: #2F936C;
+                }
+            }
+        }
+    }
+}       
+
+.btn-comp{
+    margin: 0;
+    padding: 5px;
+    border: none;
+    display: block;
+    background: #ffffff;
+    box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.1);
+    position: relative;
+    cursor: pointer;
+    font-family: $body-font;
+    &:active{
+        transform: scale(0.97);
+    }
+}
+
+.btn-success{
+    background: #55b500; color: #ffffff;
+    background: #159763;
+    box-shadow: 0px 4px 4px 0px rgba(21, 151, 99, 0.16);
+    color: #fff;
+    &:active{
+        background: #459500;
+    }
+    &.btn-theme-gradiant{
+        color: #ffffff;
+        border-color: #713da1;
+        border: none;
+        &:active{
+        }
+    }
+}
+.btn-danger{
+    background: #FF2F00; color: #ffffff;
+    box-shadow: 0px 4px 4px 0px rgba(255, 47, 0, 0.16);
+    &:active{
+        background: #c52f2f;
+    }
+    &.btn-theme-gradiant{
+        color: #ffffff;
+        border: 2px solid rgba(255,255,255,0.2);
+        background: rgba(255,255,255,0.1);
+        &:active{
+        }
+    }
+}
+
+// #f33435 #55b500
+
+.btn-tab{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 135px;
+    .tab-icon-circle{
+        border: 1px solid rgba(0,0,0,0.2);
+        border-radius: 50%;
+        width: 75px;
+        height: 75px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .tab-icon-sprite{
+            min-width: 45px;
+            min-height: 45px;
+            max-width: 45px;
+            max-height: 45px;
+            &.one{
+                @include sprite-img;
+                background-position: -233px 3px;
+            }
+            &.two{
+                @include sprite-img;
+                background-position: -276px 3px;
+            }
+        }
+    }
+    .tab-text{
+        font-size: 1rem;
+        font-weight: 600;
+    }
+    &.active{
+        color: #fff;
+        .tab-icon-circle{
+            border-color: #fff;
+        }
+    }
+    .responsive-tab-add-btn{
+        display: flex;
+        align-items: center;
+        color: #fff;
+        border-radius: 5px;
+        border: 1px solid rgba(255,255,255,0.4);
+        width: calc(100% - 20px);
+        justify-content: center;
+        padding: 5px;
+        font-size: 1rem;
+        border-radius: 20px;
+        gap: 3px;
+        position: relative;
+        z-index: 9;
+        display: none;
+        background: rgba(255,255,255,0.2);
+        .add-icon{
+            min-width: 24px;
+            max-width: 24px;
+            max-height: 24px;
+            min-height: 24px;
+            transform: scale(0.5);
+            @include sprite-img;
+            background-position: 0 -57px;
+            margin-left: -10px;
+        }
+    }
+}
+
+.btn-group-rounded{
+    &>*:first-child{
+        border-top-left-radius: 20px !important;
+        border-bottom-left-radius: 20px !important;
+    }
+    &>*:last-child{
+        border-top-right-radius: 20px !important;
+        border-bottom-right-radius: 20px !important;
+    }
+    &>button{
+        border-radius: 0 !important;
+        box-shadow: none !important;
+    }
+    &>*+*{
+        border-left: none !important;
+    }
+    &>.btn-primary.active{
+        background: #1198fb !important;
+        color: #ffffff !important;
+    }
+}
+
+.btn-card-type{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0;
+    border-radius: 8px;
+    padding: 7px;
+    min-width: 125px;
+    max-width: 160px;
+    flex-grow: 1;
+    box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.12);
+    &:hover{        
+        box-shadow: none;
+    }
+    .btn-card-text{
+        font-weight: 500;
+        font-size: 1.2rem;
+    }
+}
+.btn-card-icon-sprite{
+    @include sprite-img;
+    min-width:35px;
+    max-width:35px;
+    min-height:35px;
+    max-height:35px;
+    transform: scale(0.9);
+    &.btn-icon-checked{
+        background-position: -366px -1px;        
+    }
+    &.btn-icon-close{
+        background-position: -411px -1px;
+    }
+    &.btn-icon-play{
+        background-position: -48px -87px;
+    }
+    &.btn-icon-proceed{
+        background-position: -321px 0;
+    }
+}
+
+// X-Small devices (portrait phones, less than 575px)
+// No media query for `xs` since this is the default
+
+// 7680x4320
+
+// XX-Large devices (larger desktops, 1399px and down)
+@media (max-width: 1399px) {
+}
+
+// X-Large devices (large desktops, 1199px and down)
+@media (max-width: 1199px) {
+    .btn-tab{
+        min-height: 200px;
+        &.active{
+            .responsive-tab-add-btn{
+                margin-top: 15px;
+                display: flex;
+            }
+        }
+    }
+}
+
+// Large devices (desktops, 991px and down)
+@media (max-width: 991px) { }
+
+// Medium devices (tablets, 767px and down)
+@media (max-width: 767px) { }
+
+// Small devices (landscape phones, 575px and down)
+@media (max-width: 575px) { }

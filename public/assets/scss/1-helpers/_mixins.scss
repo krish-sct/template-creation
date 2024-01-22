@@ -1,0 +1,110 @@
+@mixin flex-space-between-center{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin flex-all-center{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-space-between{
+    display:flex;
+    justify-content: space-between;
+}
+
+@mixin flex-direction-column{
+    display:flex;
+    flex-direction: column;
+}
+
+@mixin sprite-img{    
+    background: url(../img/wondersoft-sprite-image.png) no-repeat;
+}
+
+@mixin text-ellipse{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+@mixin text-ellipse-1{    
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin text-ellipse-2{    
+    @include text-ellipse();
+    -webkit-line-clamp: 2;
+}
+
+@mixin text-ellipse-3{    
+    @include text-ellipse();
+    -webkit-line-clamp: 3;
+}
+
+@mixin text-ellipse-4{    
+    @include text-ellipse();
+    -webkit-line-clamp: 4;
+}
+
+@mixin text-ellipse-5{    
+    @include text-ellipse();
+    -webkit-line-clamp: 5;
+}
+
+// Typography
+@mixin font-default {
+    font-size: 0.875rem;
+    font-stretch: 120%;
+    font-weight: 400;
+}
+
+@mixin page-heading {
+    font-size: 1.125rem;
+    font-stretch: 140%;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.938rem;
+
+    .btn-back-comp{
+        .material-symbols-rounded{
+            font-size: 1.563rem;
+            color: $color-primary;
+            margin-right: -0.5rem;
+        }
+    }
+
+    span{
+        color: $color-gray-9;
+        font-size: 0.875rem;
+        font-stretch: 120%;
+        font-weight: 500;
+    }
+}
+// Typography
+
+// Alignment
+@mixin flex-all-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-align-center{
+    display: flex;
+    align-items: center;
+}
+
+
+@mixin flex-direction-column{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+// Alignemnt
