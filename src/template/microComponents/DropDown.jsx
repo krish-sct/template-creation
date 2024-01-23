@@ -5,7 +5,7 @@ const getSize = (size) => {
 const DropDown = ({ size }) => {
     return (
         <div className={`custom-form-group g-s-md-${getSize(size)}`}>
-            <label for="" className="custom-label">Article Title</label>
+            <label htmlFor="" className="custom-label">Article Title</label>
             <select className="custom-form-control">
                 <option value="">Option 1</option>
                 <option value="">Option 2</option>

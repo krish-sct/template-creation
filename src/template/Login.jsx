@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { Context } from '../Provider'
 
 const Login = () => {
-    const {setIsLoged, role, setRole,templateName, setTemplateName,template} = useContext(Context)
+    const { setIsLoged, role, setRole, templateName, setTemplateName, templateNames } = useContext(Context)
     const handleChange = (e) => {
         setRole(e?.target?.value)
     }
@@ -43,8 +43,8 @@ const Login = () => {
                 </Select>
                 <br />
                 <Select className='pd mr' label='Template Name' size='small' value={templateName} onChange={(e) => setTemplateName(e?.target?.value)}>
-                {template?.map((e, i) => {
-                    return <MenuItem key={i} disabled={i === 0} value={e}>{e}</MenuItem>
+                    {templateNames?.map((e, i) => {
+                        return <MenuItem key={i} disabled={i === 0} value={e}>{(i === 0 ? "Select " : '') + e}</MenuItem>
                 })}
             </Select>
                 <div>

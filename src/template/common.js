@@ -19,12 +19,16 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
+        size: "lg",
       },
       {
+        tag: "input",
+        type: "date",
         key: "date",
         value: "",
-        isRequired: true,
-        isActive: true,
+        description: "",
+        placeholder: "Enter the date",
+        size: "sm",
       },
       {
         tag: "input",
@@ -37,6 +41,7 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
+        size: "md",
       },
       {
         tag: "input",
@@ -49,6 +54,16 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
+        size: "sm",
+      },
+      {
+        tag: "input",
+        type: "date",
+        key: "date",
+        value: "",
+        description: "",
+        placeholder: "Enter the date",
+        size: "sm",
       },
       {
         tag: "textarea",
@@ -62,21 +77,21 @@ export const preDefinedTemplate = [
         isRequired: true,
         isActive: true,
       },
-      {
-        tag: "div",
-        type: "images",
-        key: "images",
-        value: "",
-        placeholder: "Enter the Image URL",
-        imgs: [
-          {
-            src: "",
-            alt: "",
-          },
-        ],
-        isRequired: true,
-        isActive: true,
-      },
+      // {
+      //   tag: "div",
+      //   type: "images",
+      //   key: "images",
+      //   value: "",
+      //   placeholder: "Enter the Image URL",
+      //   imgs: [
+      //     {
+      //       src: "",
+      //       alt: "",
+      //     },
+      //   ],
+      //   isRequired: true,
+      //   isActive: true,
+      // },
       {
         key: "htmlEditor",
         value: "",

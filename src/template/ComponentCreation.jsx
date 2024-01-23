@@ -1,12 +1,14 @@
 import { Add, ArrowDownward, ArrowUpward, Close } from '@mui/icons-material'
 import { Button, MenuItem, Select, TextField } from '@mui/material'
 import Editor from './Editor'
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { preDefinedTemplate } from './common'
 import Header from './Header'
 import GenerateTemplateForm from './GenerateTemplateForm'
+import { Context } from '../Provider'
 
-const ComponentCreation = ({ templateData, setTemplateData, handleRemoveComponent, handleUpdateValue, handleAddImg, handleAddList, handleSwap, templateName, setTemplateName }) => {
+const ComponentCreation = () => {
+    const { template, templateData, setTemplateData, handleRemoveComponent, handleUpdateValue, handleAddImg, handleAddList, handleSwap, templateName, setTemplateName } = useContext(Context)
     const lastDivRef = useRef(null);
     const [isHTML, setIsHTML] = useState(false)
     const handleChange = (value, i, component, componentIndex) => {
@@ -44,17 +46,13 @@ const ComponentCreation = ({ templateData, setTemplateData, handleRemoveComponen
             })
             .catch(error => console.log('error', error));
     }
-    useEffect(() => {
-        console.log({ templateData });
-        // if (lastDivRef.current) {
-        //     lastDivRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
-        // }
-    }, [templateData]);
-    useEffect(() => {
-        if (templateName !== template[0]) {
-            setTemplateData(preDefinedTemplate.filter((e) => e.template === templateName)[0]?.components)
-        }
-    }, [templateName])
+    // useEffect(() => {
+    //     console.log({ templateData });
+    //     // if (lastDivRef.current) {
+    //     //     lastDivRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    //     // }
+    // }, [templateData]);
+
 
     return (
         <div className="custom-layout-page">
@@ -105,7 +103,7 @@ const ComponentCreation = ({ templateData, setTemplateData, handleRemoveComponen
                                         <Close fontSize='12' className='close-icon' onClick={() => handleRemoveComponent(i, '')} />
                                     </div> :
                                         (e?.key === 'category') ?
-                                        <div className='template-component' key={i}>
+                                            <div className='template-component' key={i}>
                                                 <Select label='Category' size='small' value={e?.value} onChange={(e) => handleChange(e?.target?.value, i, '')}>
                                                     {e?.options?.map((category, i) => {
                                                         return <MenuItem key={i} value={category?.value}>{category.label}</MenuItem>
@@ -115,13 +113,14 @@ const ComponentCreation = ({ templateData, setTemplateData, handleRemoveComponen
                                             </div> :
                                             <div className='template-component' key={i}>
                                                 <TextField ref={templateData?.length === i + 1 ? lastDivRef : null} focused={templateData?.length === i + 1} fullWidth value={e?.value || ''} size='small' multiline rows={e?.key === "description" ? 3 : 1} placeholder={e?.placeholder} onChange={(e) => handleChange(e?.target?.value, i, '')} />
-                                        <Close fontSize='12' className='close-icon' onClick={() => handleRemoveComponent(i, '')} />
-                                        <ArrowUpward fontSize='12' className='add-icon' onClick={() => handleSwapUpDown(i, true)} />
-                                        <ArrowDownward fontSize='12' className='add-icon' onClick={() => handleSwapUpDown(i)} />
-                        </div>
+                                                <Close fontSize='12' className='close-icon' onClick={() => handleRemoveComponent(i, '')} />
+                                                <ArrowUpward fontSize='12' className='add-icon' onClick={() => handleSwapUpDown(i, true)} />
+                                                <ArrowDownward fontSize='12' className='add-icon' onClick={() => handleSwapUpDown(i)} />
+                                            </div>
                     )
                 })}
             </div>
+
             <Button variant="contained" color="primary" onClick={handleSubmit}>Submit</Button>
         </div>
     )

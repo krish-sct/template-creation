@@ -3,7 +3,7 @@ import { Context } from '../../Provider'
 const getSize = (size) => {
     return (size === 'lg' ? 12 : size === 'md' ? 6 : 3) || 3
 }
-const InputField = (props) => {
+const TextAreaField = (props) => {
     let { i, size, icon, placeholder, value } = props
     console.log({ i, size, icon, placeholder, value });
     const { handleUpdateValue } = useContext(Context)
@@ -16,12 +16,13 @@ const InputField = (props) => {
             {icon ?
                 <div className="custom-form-left-icon">
                     <span className="material-symbols-rounded"> {icon} </span>
-                    <input type="text" className="custom-form-control" placeholder={placeholder} value={value || ''} onChange={(e) => handleChange(e?.target?.value, i, '')} />
+                    <textarea name="" class="custom-form-control" id="" cols="30" rows="10"></textarea>
                 </div> :
-                <input type="text" className="custom-form-control" placeholder={placeholder} value={value || ''} onChange={(e) => handleChange(e?.target?.value, i, '')} />
+
+                <textarea name="" class="custom-form-control" id="" cols="30" rows="10"></textarea>
             }
         </div>
     )
 }
 
-export default InputField
+export default TextAreaField
