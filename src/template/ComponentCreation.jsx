@@ -5,9 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 import { preDefinedTemplate } from './common'
 import Header from './Header'
 import GenerateTemplateForm from './GenerateTemplateForm'
-let template = ['Template Name',
-    'Careers', 'Articles', 'Events & Tradeshows', 'FAQ', 'News', 'Newsletters', 'Press Release', 'Podcasts', 'Testimonials', 'Videos'
-]
+
 const ComponentCreation = ({ templateData, setTemplateData, handleRemoveComponent, handleUpdateValue, handleAddImg, handleAddList, handleSwap, templateName, setTemplateName }) => {
     const lastDivRef = useRef(null);
     const [isHTML, setIsHTML] = useState(false)

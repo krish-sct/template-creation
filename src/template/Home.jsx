@@ -1,86 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { template } from '../template-json'
 import ComponentCreation from './ComponentCreation'
 import TemplatePreview from './TemplatePreview'
 import { swapElements } from './common'
-// let data = [
-//     {
-//         tag: "input",
-//         type: "text",
-//         key: "header",
-//         value: "",
-//         description: "",
-//         placeholder: "Enter the Header data",
-//         min: 5,
-//         max: 100,
-//         isRequired: true,
-//         isActive: true,
-//     },
-//     {
-//         tag: "input",
-//         type: "text",
-//         key: "title",
-//         value: "",
-//         description: "",
-//         placeholder: "Enter the Title data",
-//         min: 5,
-//         max: 100,
-//         isRequired: true,
-//         isActive: true,
-//     },
-//     {
-//         tag: "input",
-//         type: "text",
-//         key: "subTitle",
-//         value: "",
-//         description: "",
-//         placeholder: "Enter the Sub-Title data",
-//         min: 5,
-//         max: 100,
-//         isRequired: true,
-//         isActive: true,
-//     },
-//     {
-//         tag: "input",
-//         type: "text",
-//         key: "description",
-//         value: "",
-//         description: "",
-//         placeholder: "Enter the Description data",
-//         min: 5,
-//         max: 100,
-//         isRequired: true,
-//         isActive: true,
-//     },
-//     {
-//         tag: "input",
-//         type: "text",
-//         key: "title",
-//         value: "",
-//         description: "",
-//         placeholder: "Enter the Title data",
-//         min: 5,
-//         max: 100,
-//         isRequired: true,
-//         isActive: true,
-//     }, {
-//         tag: "input",
-//         type: "text",
-//         key: "description",
-//         value: "",
-//         description: "",
-//         placeholder: "Enter the Description data",
-//         min: 5,
-//         max: 100,
-//         isRequired: true,
-//         isActive: true,
-//     }
+import { Context } from '../Provider'
 
-// ]
-let data = []
-const Home = ({ isLoged, role }) => {
-    const [templateData, setTemplateData] = useState(data)
-    const [templateName, setTemplateName] = useState('Template Name')
+
+const Home = () => {
+    const {templateData, setTemplateData,templateName, setTemplateName,isLoged, role} = useContext(Context)
     const handleAddComponent = (component) => {
         setTemplateData((prev) => {
             return [...prev, template?.components?.[component]]

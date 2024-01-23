@@ -1,8 +1,10 @@
 import { MenuItem, Select, TextField } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useEffect } from 'react'
+import { Context } from '../Provider'
 
-const Login = ({ setIsLoged, role, setRole }) => {
+const Login = () => {
+    const {setIsLoged, role, setRole,templateName, setTemplateName,template} = useContext(Context)
     const handleChange = (e) => {
         setRole(e?.target?.value)
     }
@@ -26,6 +28,7 @@ const Login = ({ setIsLoged, role, setRole }) => {
                     <h3>Admin Panel</h3>
                 </div>
                 <Select
+                className='pd mr'
                     defaultValue={role}
                     size='small'
                     value={role}
@@ -38,10 +41,15 @@ const Login = ({ setIsLoged, role, setRole }) => {
                     <MenuItem value={'publisher'}>Publisher</MenuItem>
                     <MenuItem value={'seo'}>SEO</MenuItem>
                 </Select>
-
+                <br />
+                <Select className='pd mr' label='Template Name' size='small' value={templateName} onChange={(e) => setTemplateName(e?.target?.value)}>
+                {template?.map((e, i) => {
+                    return <MenuItem key={i} disabled={i === 0} value={e}>{e}</MenuItem>
+                })}
+            </Select>
                 <div>
                     <br />
-                    <button className='login-btn pointer' disabled={role === "Select User Role"} onClick={() => setIsLoged(true)}>Login</button>
+                    <button className='login-btn pointer' disabled={role === "Select User Role" || templateName === "Template Name"} onClick={() => setIsLoged(true)}>Login</button>
                 </div>
             </main>
         </div>

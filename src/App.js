@@ -1,23 +1,20 @@
-import { useState } from "react";
-import Provider from "./Provider";
-// import "./styles.css";
+import { useContext, useState } from "react";
+import "./styles.css";
 import Home from "./template/Home";
 import Login from "./template/Login";
+import { Context } from "./Provider";
 
 export default function App() {
-  const [isLoged, setIsLoged] = useState(false);
-  const [role, setRole] = useState("Select User Role");
+  const { isLoged, setIsLoged, role, setRole } = useContext(Context)
   return (
     <div className="App">
-      <Provider>
-        {/* <Header /> */}
+      {/* <Header /> */}
 
-        {isLoged ? (
-          <Home isLoged={isLoged} role={role} />
-        ) : (
-          <Login setIsLoged={setIsLoged} role={role} setRole={setRole} />
-        )}
-      </Provider>
+      {isLoged ? (
+        <Home />
+      ) : (
+        <Login />
+      )}
     </div>
   );
 }
