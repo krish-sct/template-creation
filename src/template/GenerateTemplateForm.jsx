@@ -22,8 +22,10 @@ const GenerateTemplateForm = () => {
                             {templateData?.map((e, i) => {
                                 return (
                                     (e.key === 'textarea') ?
-                                        <TextAreaField key={i} i={i} size={e.size} icon={null} placeholder={e.placeholder} value={e.value} /> :
-                                        (e.key !== 'htmlEditor') ? <InputField key={i} i={i} size={e.size} icon={null} placeholder={e.placeholder} value={e.value} /> : ''
+                                        <TextAreaField key={i} i={i} size={e.size} icon={null} placeholder={e.placeholder} value={e.value} label={e.label} /> :
+                                        (e.key === 'date') ? <DateField key={i} i={i} size={e.size} icon={null} placeholder={e.placeholder} value={e.value} label={e.label} /> :
+                                        (e.key === 'textarea') ? <TextAreaField key={i} i={i} size={e.size} icon={null} placeholder={e.placeholder} value={e.value} label={e.label}/> :
+                                        (e.key !== 'htmlEditor' || e.key !=='images' || e.key !=='seo') ? <InputField key={i} i={i} size={e.size} icon={null} placeholder={e.placeholder} value={e.value} label={e.label}/> : ''
                                 )
                             })}
 

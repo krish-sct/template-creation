@@ -19,7 +19,23 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
+        label: "Header",
+        label: "Header",
         size: "lg",
+      },
+      {
+        tag: "input",
+        type: "text",
+        key: "title",
+        value: "",
+        description: "",
+        placeholder: "Enter the Title data",
+        min: 5,
+        max: 100,
+        isRequired: true,
+        isActive: true,
+        label: "Title",
+        size: "md",
       },
       {
         tag: "input",
@@ -33,19 +49,6 @@ export const preDefinedTemplate = [
       {
         tag: "input",
         type: "text",
-        key: "title",
-        value: "",
-        description: "",
-        placeholder: "Enter the Title data",
-        min: 5,
-        max: 100,
-        isRequired: true,
-        isActive: true,
-        size: "md",
-      },
-      {
-        tag: "input",
-        type: "text",
         key: "subTitle",
         value: "",
         description: "",
@@ -54,6 +57,7 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
+        label: "Sub Title",
         size: "sm",
       },
       {
@@ -76,6 +80,22 @@ export const preDefinedTemplate = [
         max: 300,
         isRequired: true,
         isActive: true,
+        label: "Description",
+        size: "md"
+      },
+      {
+        tag: "textarea",
+        type: "text",
+        key: "description",
+        value: "",
+        description: "",
+        placeholder: "Enter the Description data",
+        min: 5,
+        max: 300,
+        isRequired: true,
+        isActive: true,
+        label: "Description",
+        size: "lg"
       },
       // {
       //   tag: "div",
@@ -91,12 +111,14 @@ export const preDefinedTemplate = [
       //   ],
       //   isRequired: true,
       //   isActive: true,
+
       // },
       {
         key: "htmlEditor",
         value: "",
         isRequired: true,
         isActive: true,
+        label: "Text Editor",
         placeholder: "Enter the HTML code here",
       },
       {
@@ -123,12 +145,8 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
-      },
-      {
-        key: "date",
-        value: "",
-        isRequired: true,
-        isActive: true,
+        label: "Header",
+        size: "lg",
       },
       {
         tag: "input",
@@ -141,6 +159,17 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
+        label: "Title",
+        size: "md",
+      },
+      {
+        tag: "input",
+        type: "date",
+        key: "date",
+        value: "",
+        description: "",
+        placeholder: "Enter the date",
+        size: "sm",
       },
       {
         tag: "input",
@@ -153,6 +182,17 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
+        label: "Sub Title",
+        size: "sm",
+      },
+      {
+        tag: "input",
+        type: "date",
+        key: "date",
+        value: "",
+        description: "",
+        placeholder: "Enter the date",
+        size: "sm",
       },
       {
         tag: "textarea",
@@ -165,27 +205,29 @@ export const preDefinedTemplate = [
         max: 300,
         isRequired: true,
         isActive: true,
+        label: "Description",
+        size: "md"
       },
       {
-        tag: "div",
-        type: "images",
-        key: "images",
+        tag: "textarea",
+        type: "text",
+        key: "description",
         value: "",
-        placeholder: "Enter the Image URL",
-        imgs: [
-          {
-            src: "",
-            alt: "",
-          },
-        ],
+        description: "",
+        placeholder: "Enter the Description data",
+        min: 5,
+        max: 300,
         isRequired: true,
         isActive: true,
+        label: "Description",
+        size: "lg"
       },
       {
         key: "htmlEditor",
         value: "",
         isRequired: true,
         isActive: true,
+        label: "",
         placeholder: "Enter the HTML code here",
       },
       {
@@ -196,13 +238,7 @@ export const preDefinedTemplate = [
         canonicalLink: "",
         placeholder: "SEO",
       },
-    ],
-    seo: {
-      metaDescription: "",
-      imagePreviewUrl: "",
-      keywords: [],
-      canonicalLink: "",
-    },
+    ]
   },
   {
     template: "Events & Tradeshows",
@@ -218,12 +254,8 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
-      },
-      {
-        key: "date",
-        value: "",
-        isRequired: true,
-        isActive: true,
+        label: "Header",
+        size: "lg",
       },
       {
         tag: "input",
@@ -236,6 +268,17 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
+        label: "Title",
+        size: "md",
+      },
+      {
+        tag: "input",
+        type: "date",
+        key: "date",
+        value: "",
+        description: "",
+        placeholder: "Enter the date",
+        size: "sm",
       },
       {
         tag: "input",
@@ -248,6 +291,17 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
+        label: "Sub Title",
+        size: "sm",
+      },
+      {
+        tag: "input",
+        type: "date",
+        key: "date",
+        value: "",
+        description: "",
+        placeholder: "Enter the date",
+        size: "sm",
       },
       {
         tag: "textarea",
@@ -260,12 +314,29 @@ export const preDefinedTemplate = [
         max: 300,
         isRequired: true,
         isActive: true,
+        label: "Description",
+        size: "md"
+      },
+      {
+        tag: "textarea",
+        type: "text",
+        key: "description",
+        value: "",
+        description: "",
+        placeholder: "Enter the Description data",
+        min: 5,
+        max: 300,
+        isRequired: true,
+        isActive: true,
+        label: "Description",
+        size: "lg"
       },
       {
         key: "htmlEditor",
         value: "",
         isRequired: true,
         isActive: true,
+        label: "",
         placeholder: "Enter the HTML code here",
       },
       {
@@ -276,13 +347,7 @@ export const preDefinedTemplate = [
         canonicalLink: "",
         placeholder: "SEO",
       },
-    ],
-    seo: {
-      metaDescription: "",
-      imagePreviewUrl: "",
-      keywords: [],
-      canonicalLink: "",
-    },
+    ]
   },
   {
     template: "FAQ",
@@ -298,12 +363,8 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
-      },
-      {
-        key: "date",
-        value: "",
-        isRequired: true,
-        isActive: true,
+        label: "Header",
+        size: "lg",
       },
       {
         tag: "input",
@@ -316,6 +377,17 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
+        label: "Title",
+        size: "md",
+      },
+      {
+        tag: "input",
+        type: "date",
+        key: "date",
+        value: "",
+        description: "",
+        placeholder: "Enter the date",
+        size: "sm",
       },
       {
         tag: "input",
@@ -328,6 +400,17 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
+        label: "Sub Title",
+        size: "sm",
+      },
+      {
+        tag: "input",
+        type: "date",
+        key: "date",
+        value: "",
+        description: "",
+        placeholder: "Enter the date",
+        size: "sm",
       },
       {
         tag: "textarea",
@@ -340,12 +423,29 @@ export const preDefinedTemplate = [
         max: 300,
         isRequired: true,
         isActive: true,
+        label: "Description",
+        size: "md"
+      },
+      {
+        tag: "textarea",
+        type: "text",
+        key: "description",
+        value: "",
+        description: "",
+        placeholder: "Enter the Description data",
+        min: 5,
+        max: 300,
+        isRequired: true,
+        isActive: true,
+        label: "Description",
+        size: "lg"
       },
       {
         key: "htmlEditor",
         value: "",
         isRequired: true,
         isActive: true,
+        label: "Text Editor",
         placeholder: "Enter the HTML code here",
       },
       {
@@ -356,13 +456,7 @@ export const preDefinedTemplate = [
         canonicalLink: "",
         placeholder: "SEO",
       },
-    ],
-    seo: {
-      metaDescription: "",
-      imagePreviewUrl: "",
-      keywords: [],
-      canonicalLink: "",
-    },
+    ]
   },
   {
     template: "News",
@@ -378,12 +472,8 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
-      },
-      {
-        key: "date",
-        value: "",
-        isRequired: true,
-        isActive: true,
+        label: "Header",
+        size: "lg",
       },
       {
         tag: "input",
@@ -396,6 +486,17 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
+        label: "Title",
+        size: "md",
+      },
+      {
+        tag: "input",
+        type: "date",
+        key: "date",
+        value: "",
+        description: "",
+        placeholder: "Enter the date",
+        size: "sm",
       },
       {
         tag: "input",
@@ -408,6 +509,17 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
+        label: "Sub Field",
+        size: "sm",
+      },
+      {
+        tag: "input",
+        type: "date",
+        key: "date",
+        value: "",
+        description: "",
+        placeholder: "Enter the date",
+        size: "sm",
       },
       {
         tag: "textarea",
@@ -420,6 +532,22 @@ export const preDefinedTemplate = [
         max: 300,
         isRequired: true,
         isActive: true,
+        label: "Description",
+        size: "md"
+      },
+      {
+        tag: "textarea",
+        type: "text",
+        key: "description",
+        value: "",
+        description: "",
+        placeholder: "Enter the Description data",
+        min: 5,
+        max: 300,
+        isRequired: true,
+        isActive: true,
+        label: "Description",
+        size: "lg"
       },
       {
         tag: "div",
@@ -435,12 +563,14 @@ export const preDefinedTemplate = [
         ],
         isRequired: true,
         isActive: true,
+        label: "",
       },
       {
         key: "htmlEditor",
         value: "",
         isRequired: true,
         isActive: true,
+        label: "",
         placeholder: "Enter the HTML code here",
       },
       {
@@ -452,12 +582,6 @@ export const preDefinedTemplate = [
         placeholder: "SEO",
       },
     ],
-    seo: {
-      metaDescription: "",
-      imagePreviewUrl: "",
-      keywords: [],
-      canonicalLink: "",
-    },
   },
   {
     template: "Newsletters",
@@ -473,12 +597,8 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
-      },
-      {
-        key: "date",
-        value: "",
-        isRequired: true,
-        isActive: true,
+        label: "Header",
+        size: "lg",
       },
       {
         tag: "input",
@@ -491,6 +611,17 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
+        label: "Title",
+        size: "md",
+      },
+      {
+        tag: "input",
+        type: "date",
+        key: "date",
+        value: "",
+        description: "",
+        placeholder: "Enter the date",
+        size: "sm",
       },
       {
         tag: "input",
@@ -503,6 +634,17 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
+        label: "Sub Title",
+        size: "sm",
+      },
+      {
+        tag: "input",
+        type: "date",
+        key: "date",
+        value: "",
+        description: "",
+        placeholder: "Enter the date",
+        size: "sm",
       },
       {
         tag: "textarea",
@@ -515,12 +657,29 @@ export const preDefinedTemplate = [
         max: 300,
         isRequired: true,
         isActive: true,
+        label: "Description",
+        size: "md"
+      },
+      {
+        tag: "textarea",
+        type: "text",
+        key: "description",
+        value: "",
+        description: "",
+        placeholder: "Enter the Description data",
+        min: 5,
+        max: 300,
+        isRequired: true,
+        isActive: true,
+        label: "Description",
+        size: "lg"
       },
       {
         key: "htmlEditor",
         value: "",
         isRequired: true,
         isActive: true,
+        label: "html",
         placeholder: "Enter the HTML code here",
       },
       {
@@ -531,13 +690,7 @@ export const preDefinedTemplate = [
         canonicalLink: "",
         placeholder: "SEO",
       },
-    ],
-    seo: {
-      metaDescription: "",
-      imagePreviewUrl: "",
-      keywords: [],
-      canonicalLink: "",
-    },
+    ]
   },
   {
     template: "Press Release",
@@ -553,12 +706,8 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
-      },
-      {
-        key: "date",
-        value: "",
-        isRequired: true,
-        isActive: true,
+        label: "Header",
+        size: "lg",
       },
       {
         tag: "input",
@@ -571,6 +720,17 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
+        label: "Title",
+        size: "md",
+      },
+      {
+        tag: "input",
+        type: "date",
+        key: "date",
+        value: "",
+        description: "",
+        placeholder: "Enter the date",
+        size: "sm",
       },
       {
         tag: "input",
@@ -583,6 +743,17 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
+        label: "Sub Title",
+        size: "sm",
+      },
+      {
+        tag: "input",
+        type: "date",
+        key: "date",
+        value: "",
+        description: "",
+        placeholder: "Enter the date",
+        size: "sm",
       },
       {
         tag: "textarea",
@@ -595,12 +766,29 @@ export const preDefinedTemplate = [
         max: 300,
         isRequired: true,
         isActive: true,
+        label: "Description",
+        size: "md"
+      },
+      {
+        tag: "textarea",
+        type: "text",
+        key: "description",
+        value: "",
+        description: "",
+        placeholder: "Enter the Description data",
+        min: 5,
+        max: 300,
+        isRequired: true,
+        isActive: true,
+        label: "Description",
+        size: "lg"
       },
       {
         key: "htmlEditor",
         value: "",
         isRequired: true,
         isActive: true,
+        label: "html",
         placeholder: "Enter the HTML code here",
       },
       {
@@ -611,13 +799,7 @@ export const preDefinedTemplate = [
         canonicalLink: "",
         placeholder: "SEO",
       },
-    ],
-    seo: {
-      metaDescription: "",
-      imagePreviewUrl: "",
-      keywords: [],
-      canonicalLink: "",
-    },
+    ]
   },
   {
     template: "Podcasts",
@@ -633,12 +815,8 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
-      },
-      {
-        key: "date",
-        value: "",
-        isRequired: true,
-        isActive: true,
+        label: "Header",
+        size: "lg",
       },
       {
         tag: "input",
@@ -651,6 +829,17 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
+        label: "Title",
+        size: "md",
+      },
+      {
+        tag: "input",
+        type: "date",
+        key: "date",
+        value: "",
+        description: "",
+        placeholder: "Enter the date",
+        size: "sm",
       },
       {
         tag: "input",
@@ -663,6 +852,17 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
+        label: "Sub Title",
+        size: "sm",
+      },
+      {
+        tag: "input",
+        type: "date",
+        key: "date",
+        value: "",
+        description: "",
+        placeholder: "Enter the date",
+        size: "sm",
       },
       {
         tag: "textarea",
@@ -675,6 +875,22 @@ export const preDefinedTemplate = [
         max: 300,
         isRequired: true,
         isActive: true,
+        label: "Description",
+        size: "md"
+      },
+      {
+        tag: "textarea",
+        type: "text",
+        key: "description",
+        value: "",
+        description: "",
+        placeholder: "Enter the Description data",
+        min: 5,
+        max: 300,
+        isRequired: true,
+        isActive: true,
+        label: "Description",
+        size: "lg"
       },
       {
         tag: "div",
@@ -690,12 +906,14 @@ export const preDefinedTemplate = [
         ],
         isRequired: true,
         isActive: true,
+        label: "",
       },
       {
         key: "htmlEditor",
         value: "",
         isRequired: true,
         isActive: true,
+        label: "Text Editor",
         placeholder: "Enter the HTML code here",
       },
       {
@@ -706,13 +924,7 @@ export const preDefinedTemplate = [
         canonicalLink: "",
         placeholder: "SEO",
       },
-    ],
-    seo: {
-      metaDescription: "",
-      imagePreviewUrl: "",
-      keywords: [],
-      canonicalLink: "",
-    },
+    ]
   },
   {
     template: "Testimonials",
@@ -728,12 +940,8 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
-      },
-      {
-        key: "date",
-        value: "",
-        isRequired: true,
-        isActive: true,
+        label: "Header",
+        size: "lg",
       },
       {
         tag: "input",
@@ -746,6 +954,17 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
+        label: "Title",
+        size: "md",
+      },
+      {
+        tag: "input",
+        type: "date",
+        key: "date",
+        value: "",
+        description: "",
+        placeholder: "Enter the date",
+        size: "sm",
       },
       {
         tag: "input",
@@ -758,6 +977,17 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
+        label: "Sub Title",
+        size: "sm",
+      },
+      {
+        tag: "input",
+        type: "date",
+        key: "date",
+        value: "",
+        description: "",
+        placeholder: "Enter the date",
+        size: "sm",
       },
       {
         tag: "textarea",
@@ -770,6 +1000,22 @@ export const preDefinedTemplate = [
         max: 300,
         isRequired: true,
         isActive: true,
+        label: "Description",
+        size: "md"
+      },
+      {
+        tag: "textarea",
+        type: "text",
+        key: "description",
+        value: "",
+        description: "",
+        placeholder: "Enter the Description data",
+        min: 5,
+        max: 300,
+        isRequired: true,
+        isActive: true,
+        label: "Description",
+        size: "lg"
       },
       {
         tag: "div",
@@ -785,12 +1031,14 @@ export const preDefinedTemplate = [
         ],
         isRequired: true,
         isActive: true,
+        label: "",
       },
       {
         key: "htmlEditor",
         value: "",
         isRequired: true,
         isActive: true,
+        label: "Text Editor",
         placeholder: "Enter the HTML code here",
       },
       {
@@ -801,13 +1049,7 @@ export const preDefinedTemplate = [
         canonicalLink: "",
         placeholder: "SEO",
       },
-    ],
-    seo: {
-      metaDescription: "",
-      imagePreviewUrl: "",
-      keywords: [],
-      canonicalLink: "",
-    },
+    ]
   },
   {
     template: "Videos",
@@ -823,6 +1065,8 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
+        label: "Title",
+        size: "lg"
       },
       {
         tag: "input",
@@ -835,6 +1079,8 @@ export const preDefinedTemplate = [
         max: 100,
         isRequired: true,
         isActive: true,
+        label: "URL",
+        size: "lg"
       },
       {
         tag: "select",
@@ -852,12 +1098,14 @@ export const preDefinedTemplate = [
         ],
         isRequired: true,
         isActive: true,
+        label: "Category",
       },
       {
         key: "htmlEditor",
         value: "",
         isRequired: true,
         isActive: true,
+        label: "",
         placeholder: "Enter the HTML code here",
       },
       {

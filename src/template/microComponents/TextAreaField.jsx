@@ -4,7 +4,7 @@ const getSize = (size) => {
     return (size === 'lg' ? 12 : size === 'md' ? 6 : 3) || 3
 }
 const TextAreaField = (props) => {
-    let { i, size, icon, placeholder, value } = props
+    let { i, size, icon, placeholder, value, label } = props
     console.log({ i, size, icon, placeholder, value });
     const { handleUpdateValue } = useContext(Context)
     const handleChange = (value, i, component, componentIndex) => {
@@ -12,7 +12,7 @@ const TextAreaField = (props) => {
     }
     return (
         <div className={`custom-form-group g-s-md-${getSize(size)}`}>
-            <label htmlFor="" className="custom-label">Article Title</label>
+            <label htmlFor="" className="custom-label">{label}</label>
             {icon ?
                 <div className="custom-form-left-icon">
                     <span className="material-symbols-rounded"> {icon} </span>
