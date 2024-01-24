@@ -16,10 +16,10 @@ const TextAreaField = (props) => {
             {icon ?
                 <div className="custom-form-left-icon">
                     <span className="material-symbols-rounded"> {icon} </span>
-                    <textarea name="" class="custom-form-control" id="" cols="30" rows="10"></textarea>
+                    <textarea name="" class="custom-form-control" id="" cols="30" rows="10" onChange={(e) => handleChange(e?.target?.value, i, '')} />
                 </div> :
 
-                <textarea name="" class="custom-form-control" id="" cols="30" rows="10"></textarea>
+                <textarea name="" class="custom-form-control" id="" cols="30" rows="10" onChange={(e) => handleChange(e?.target?.value, i, '')} />
             }
         </div>
     )

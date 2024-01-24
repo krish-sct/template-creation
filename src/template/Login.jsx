@@ -42,14 +42,14 @@ const Login = () => {
                     <MenuItem value={'seo'}>SEO</MenuItem>
                 </Select>
                 <br />
-                <Select className='pd mr' label='Template Name' size='small' value={templateName} onChange={(e) => setTemplateName(e?.target?.value)}>
+                {/* <Select className='pd mr' label='Template Name' size='small' value={templateName} onChange={(e) => setTemplateName(e?.target?.value)}>
                     {templateNames?.map((e, i) => {
                         return <MenuItem key={i} disabled={i === 0} value={e}>{(i === 0 ? "Select " : '') + e}</MenuItem>
                 })}
-            </Select>
+            </Select> */}
                 <div>
                     <br />
-                    <button className='login-btn pointer' disabled={role === "Select User Role" || templateName === "Template Name"} onClick={() => setIsLoged(true)}>Login</button>
+                    <button className='login-btn pointer' disabled={role === "Select User Role"} onClick={() => setIsLoged(true)}>Login</button>
                 </div>
             </main>
         </div>

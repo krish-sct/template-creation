@@ -1,48 +1,39 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { template } from '../template-json'
-import ComponentCreation from './ComponentCreation'
-import TemplatePreview from './TemplatePreview'
-import { swapElements } from './common'
 import { Context } from '../Provider'
+import Header from './Header'
+import GenerateTemplateForm from './GenerateTemplateForm'
+import Dashboard from './Dashboard'
 
 
 const Home = () => {
-    const { templateData, templateName, handleGetTemplateData, role } = useContext(Context)
-    useEffect(() => {
-        console.log({ role });
-        if (role !== 'creator') {
-            handleGetTemplateData()
-        }
-    }, [role])
+    const { setTemplateName, role, templateName, templateNames, isAddNew } = useContext(Context)
+
     return (
-        <div className='home'>
+        <div className='flex' style={{ width: "100%" }}>
             <div className='sidebar'>
                 {/* <h4>Components</h4> */}
-                {/* <div>
+                <div>
                     {
-                        Object.keys(template?.components)?.map((e, i) => {
+                        (templateNames)?.map((e, i) => {
                             return (
-                                <div key={i} className='component-list'>
-                                    <h5 className='component-name'>{e} </h5>
-                                    <IconButton size='small' onClick={() => handleAddComponent(e)}><Add /></IconButton>
+                                <div key={i} className={`${i != 0 ? 'component-list-hover' : ''} ${templateName === e ? 'active' : ''} component-list`} onClick={() => i != 0 ? setTemplateName(e) : null}>
+                                    <h5 className='component-name'>{e}</h5>
                                 </div>
                             )
                         })
                     }
-                </div> */}
+                </div> 
             </div>
-            <div className='template'>
-                {
-                    role === "creator" ? 
-                        <ComponentCreation /> 
-                        :
-                        'header list'
+            <div className='main'>
+                <div className="custom-layout-page">
+                    <Header />
+                    {isAddNew === false ? <GenerateTemplateForm />
+                        : <div><Dashboard /> </div>
+                    }
 
-                }
+                </div>
             </div>
-            <div className='preview'>
-                <TemplatePreview templateData={templateData} templateName={templateName} />
-            </div>
+
         </div>
     )
 }

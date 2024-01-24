@@ -61,13 +61,18 @@ export const preDefinedTemplate = [
         size: "sm",
       },
       {
-        tag: "input",
-        type: "date",
-        key: "date",
+        tag: "textarea",
+        type: "text",
+        key: "description",
         value: "",
         description: "",
-        placeholder: "Enter the date",
-        size: "sm",
+        placeholder: "Enter the Description data",
+        min: 5,
+        max: 300,
+        isRequired: true,
+        isActive: true,
+        label: "Description",
+        size: "md",
       },
       {
         tag: "textarea",
@@ -81,21 +86,7 @@ export const preDefinedTemplate = [
         isRequired: true,
         isActive: true,
         label: "Description",
-        size: "md"
-      },
-      {
-        tag: "textarea",
-        type: "text",
-        key: "description",
-        value: "",
-        description: "",
-        placeholder: "Enter the Description data",
-        min: 5,
-        max: 300,
-        isRequired: true,
-        isActive: true,
-        label: "Description",
-        size: "lg"
+        size: "lg",
       },
       // {
       //   tag: "div",
@@ -197,7 +188,7 @@ export const preDefinedTemplate = [
         isRequired: true,
         isActive: true,
         label: "Description",
-        size: "md"
+        size: "md",
       },
       {
         tag: "textarea",
@@ -211,7 +202,7 @@ export const preDefinedTemplate = [
         isRequired: true,
         isActive: true,
         label: "Description",
-        size: "lg"
+        size: "lg",
       },
       {
         key: "htmlEditor",
@@ -229,7 +220,7 @@ export const preDefinedTemplate = [
         canonicalLink: "",
         placeholder: "SEO",
       },
-    ]
+    ],
   },
   {
     template: "Events & Tradeshows",
@@ -306,7 +297,7 @@ export const preDefinedTemplate = [
         isRequired: true,
         isActive: true,
         label: "Description",
-        size: "md"
+        size: "md",
       },
       {
         tag: "textarea",
@@ -320,7 +311,7 @@ export const preDefinedTemplate = [
         isRequired: true,
         isActive: true,
         label: "Description",
-        size: "lg"
+        size: "lg",
       },
       {
         key: "htmlEditor",
@@ -338,7 +329,7 @@ export const preDefinedTemplate = [
         canonicalLink: "",
         placeholder: "SEO",
       },
-    ]
+    ],
   },
   {
     template: "FAQ",
@@ -415,7 +406,7 @@ export const preDefinedTemplate = [
         isRequired: true,
         isActive: true,
         label: "Description",
-        size: "md"
+        size: "md",
       },
       {
         tag: "textarea",
@@ -429,7 +420,7 @@ export const preDefinedTemplate = [
         isRequired: true,
         isActive: true,
         label: "Description",
-        size: "lg"
+        size: "lg",
       },
       {
         key: "htmlEditor",
@@ -447,7 +438,7 @@ export const preDefinedTemplate = [
         canonicalLink: "",
         placeholder: "SEO",
       },
-    ]
+    ],
   },
   {
     template: "News",
@@ -524,7 +515,7 @@ export const preDefinedTemplate = [
         isRequired: true,
         isActive: true,
         label: "Description",
-        size: "md"
+        size: "md",
       },
       {
         tag: "textarea",
@@ -538,7 +529,7 @@ export const preDefinedTemplate = [
         isRequired: true,
         isActive: true,
         label: "Description",
-        size: "lg"
+        size: "lg",
       },
       {
         tag: "div",
@@ -649,7 +640,7 @@ export const preDefinedTemplate = [
         isRequired: true,
         isActive: true,
         label: "Description",
-        size: "md"
+        size: "md",
       },
       {
         tag: "textarea",
@@ -663,7 +654,7 @@ export const preDefinedTemplate = [
         isRequired: true,
         isActive: true,
         label: "Description",
-        size: "lg"
+        size: "lg",
       },
       {
         key: "htmlEditor",
@@ -681,7 +672,7 @@ export const preDefinedTemplate = [
         canonicalLink: "",
         placeholder: "SEO",
       },
-    ]
+    ],
   },
   {
     template: "Press Release",
@@ -758,7 +749,7 @@ export const preDefinedTemplate = [
         isRequired: true,
         isActive: true,
         label: "Description",
-        size: "md"
+        size: "md",
       },
       {
         tag: "textarea",
@@ -772,7 +763,7 @@ export const preDefinedTemplate = [
         isRequired: true,
         isActive: true,
         label: "Description",
-        size: "lg"
+        size: "lg",
       },
       {
         key: "htmlEditor",
@@ -790,7 +781,7 @@ export const preDefinedTemplate = [
         canonicalLink: "",
         placeholder: "SEO",
       },
-    ]
+    ],
   },
   {
     template: "Podcasts",
@@ -867,7 +858,7 @@ export const preDefinedTemplate = [
         isRequired: true,
         isActive: true,
         label: "Description",
-        size: "md"
+        size: "md",
       },
       {
         tag: "textarea",
@@ -881,7 +872,7 @@ export const preDefinedTemplate = [
         isRequired: true,
         isActive: true,
         label: "Description",
-        size: "lg"
+        size: "lg",
       },
       {
         tag: "div",
@@ -915,7 +906,7 @@ export const preDefinedTemplate = [
         canonicalLink: "",
         placeholder: "SEO",
       },
-    ]
+    ],
   },
   {
     template: "Testimonials",
@@ -992,7 +983,7 @@ export const preDefinedTemplate = [
         isRequired: true,
         isActive: true,
         label: "Description",
-        size: "md"
+        size: "md",
       },
       {
         tag: "textarea",
@@ -1006,7 +997,7 @@ export const preDefinedTemplate = [
         isRequired: true,
         isActive: true,
         label: "Description",
-        size: "lg"
+        size: "lg",
       },
       {
         tag: "div",
@@ -1040,7 +1031,7 @@ export const preDefinedTemplate = [
         canonicalLink: "",
         placeholder: "SEO",
       },
-    ]
+    ],
   },
   {
     template: "Videos",
@@ -1057,7 +1048,7 @@ export const preDefinedTemplate = [
         isRequired: true,
         isActive: true,
         label: "Title",
-        size: "lg"
+        size: "lg",
       },
       {
         tag: "input",
@@ -1071,7 +1062,7 @@ export const preDefinedTemplate = [
         isRequired: true,
         isActive: true,
         label: "URL",
-        size: "lg"
+        size: "lg",
       },
       {
         tag: "select",

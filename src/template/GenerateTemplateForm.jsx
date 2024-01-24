@@ -9,7 +9,8 @@ import { Context } from '../Provider'
 import TextAreaField from './microComponents/TextAreaField'
 
 const GenerateTemplateForm = () => {
-    const { templateData,handleSubmit,handleChange } = useContext(Context)
+    const { templateData, handleSubmit, selectedTab } = useContext(Context)
+    console.log({ selectedTab });
     console.log({ templateData });
     return (
         <div className="c-l-body">
@@ -17,33 +18,41 @@ const GenerateTemplateForm = () => {
                 <Tab />
                 <div className="t-c-body">
                     <TemplateHead />
-                    <div className="t-c-b-body">
-                        <div className="t-c-b-item grid-system">
-                            {templateData?.map((e, i) => {
-                                return (
-                                    (e.key === 'textarea') ?
-                                        <TextAreaField key={i} i={i} size={e.size} icon={null} placeholder={e.placeholder} value={e.value} label={e.label} /> :
-                                        (e.key === 'date') ? <DateField key={i} i={i} size={e.size} icon={null} placeholder={e.placeholder} value={e.value} label={e.label} /> :
-                                        (e.key === 'textarea') ? <TextAreaField key={i} i={i} size={e.size} icon={null} placeholder={e.placeholder} value={e.value} label={e.label}/> :
-                                        (e.key === 'dropdown') ? <DropDown key={i} i={i} size={e.size} icon={null} placeholder={e.placeholder} value={e.value} label={e.label} options={e.options}/> :
-                                        (e.key !== 'htmlEditor' && e.key !=='images' && e.key !=='seo') ? <InputField key={i} i={i} size={e.size} icon={null} placeholder={e.placeholder} value={e.value} label={e.label}/> : ''
-                                )
-                            })}
-
-                            {/* <InputField size={'sm'} icon={'person'} />
-                            <DateField size={'sm'} />
-                            <InputField size={'md'} />
-                            <DropDown size={'sm'} /> */}
+                    {selectedTab === 1 ? <>
+                        <div className="t-c-b-body">
+                            <div className="t-c-b-item grid-system">
+                                {templateData?.map((e, i) => {
+                                    return (
+                                        (e.key === 'seo') ? <InputField key={i} i={i} size={'lg'} icon={null} placeholder={'Enter SEO keywords'} value={e.value} label={e.label} /> : ''
+                                    )
+                                })}
+                            </div>
                         </div>
-                        {templateData?.map((e, i) => {
-                            return (
-                                (e.key === 'htmlEditor') ? <div className="t-c-b-item">
-                                    <Editor key={i} i={i} data={''} />
-                                </div> : ''
-                            )
-                        })}
+                    </> : <>
+                            <div className="t-c-b-body">
+                                <div className="t-c-b-item grid-system">
+                                    {templateData?.map((e, i) => {
+                                        return (
+                                            (e.key === 'textarea') ?
+                                                <TextAreaField key={i} i={i} size={e.size} icon={null} placeholder={e.placeholder} value={e.value} label={e.label} /> :
+                                                (e.key === 'date') ? <DateField key={i} i={i} size={e.size} icon={null} placeholder={e.placeholder} value={e.value} label={e.label} /> :
+                                                    (e.key === 'textarea') ? <TextAreaField key={i} i={i} size={e.size} icon={null} placeholder={e.placeholder} value={e.value} label={e.label} /> :
+                                                        (e.key === 'dropdown') ? <DropDown key={i} i={i} size={e.size} icon={null} placeholder={e.placeholder} value={e.value} label={e.label} options={e.options} /> :
+                                                            (e.key !== 'htmlEditor' && e.key !== 'images' && e.key !== 'seo') ? <InputField key={i} i={i} size={e.size} icon={null} placeholder={e.placeholder} value={e.value} label={e.label} /> : ''
+                                        )
+                                    })}
+                                </div>
+                                {templateData?.map((e, i) => {
+                                    return (
+                                        (e.key === 'htmlEditor') ? <div className="t-c-b-item">
+                                            <Editor key={i} i={i} data={''} />
+                                        </div> : ''
+                                    )
+                                })}
 
-                    </div>
+                            </div>
+
+                    </>} 
                     <div className="t-c-b-footer">
                         <button className="btn btn-primary">
                             <span>Cancel</span>

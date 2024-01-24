@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-const url = "http://localhost:5000";
+const url = "http://192.168.1.199:7234";
 export const Context = React.createContext();
 import { template } from "./template-json";
 import { preDefinedTemplate } from "./template/common";
@@ -22,7 +22,30 @@ const Provider = (props) => {
   const [role, setRole] = useState("Select User Role");
   const [templateData, setTemplateData] = useState(data);
   const [templateName, setTemplateName] = useState("Template Name");
-
+  const [selectedTab, setSelectedTab] = useState(0);
+  const [isAddNew, setIsAddNew] = useState(null);
+  const [pageList, setPageList] = useState([]);
+  const [dashboardData, setDashboardData] = useState({});
+  const [selectedDashboard, setSelectedDashboard] = useState(0);
+  const handleAddPreview = () => {
+    if (isAddNew) {
+      setIsAddNew(false);
+    }
+  };
+  const handleLogout = () => {
+    setIsLoged(false);
+    setIsAddNew(null);
+    setRole("Select User Role");
+    setTemplateName("Template Name");
+    setDashboardData({});
+    setPageList([]);
+  };
+  const handleGenerateLink = (stage, templateName, id) => {
+    templateName =
+      templateName === "News" ? "newses" : templateName.toLowerCase();
+    let domain = "http://192.168.1.220:3000/stage/";
+    return `${domain}${stage}/${templateName}/${id}- ${Date.now()}`;
+  };
   const handleAddComponent = (component) => {
     setTemplateData((prev) => {
       return [...prev, template?.components?.[component]];
@@ -38,9 +61,9 @@ const Provider = (props) => {
         newArr = prev?.map((e, i) => {
           return index === i
             ? {
-              ...e,
-              imgs: e?.imgs?.filter((_img, imgI) => componentIndex !== imgI),
-            }
+                ...e,
+                imgs: e?.imgs?.filter((_img, imgI) => componentIndex !== imgI),
+              }
             : e;
         });
       }
@@ -48,11 +71,11 @@ const Provider = (props) => {
         newArr = prev?.map((e, i) => {
           return index === i
             ? {
-              ...e,
-              lists: e?.lists?.filter(
-                (_list, listI) => componentIndex !== listI
-              ),
-            }
+                ...e,
+                lists: e?.lists?.filter(
+                  (_list, listI) => componentIndex !== listI
+                ),
+              }
             : e;
         });
       }
@@ -64,9 +87,9 @@ const Provider = (props) => {
       return prev?.map((e, i) => {
         return i === index
           ? {
-            ...e,
-            imgs: [...e?.imgs, { src: "", alt: "" }],
-          }
+              ...e,
+              imgs: [...e?.imgs, { src: "", alt: "" }],
+            }
           : e;
       });
     });
@@ -76,15 +99,15 @@ const Provider = (props) => {
       return prev?.map((e, i) => {
         return i === index
           ? {
-            ...e,
-            lists: [
-              ...e?.lists,
-              {
-                key: "listText",
-                value: "",
-              },
-            ],
-          }
+              ...e,
+              lists: [
+                ...e?.lists,
+                {
+                  key: "listText",
+                  value: "",
+                },
+              ],
+            }
           : e;
       });
     });
@@ -102,11 +125,11 @@ const Provider = (props) => {
         newData = prev?.map((e, i) => {
           return i === index
             ? {
-              ...e,
-              imgs: e?.imgs?.map((img, imgI) => {
-                return imgI === componentIndex ? value : img;
-              }),
-            }
+                ...e,
+                imgs: e?.imgs?.map((img, imgI) => {
+                  return imgI === componentIndex ? value : img;
+                }),
+              }
             : e;
         });
       }
@@ -115,11 +138,11 @@ const Provider = (props) => {
         newData = prev?.map((e, i) => {
           return i === index
             ? {
-              ...e,
-              lists: e?.lists?.map((list, listI) => {
-                return listI === componentIndex ? data : list;
-              }),
-            }
+                ...e,
+                lists: e?.lists?.map((list, listI) => {
+                  return listI === componentIndex ? data : list;
+                }),
+              }
             : e;
         });
       }
@@ -133,8 +156,8 @@ const Provider = (props) => {
     });
   };
   const handleSwapUpDown = (index, isUp) => {
-    handleSwap(index, isUp ? (index - 1) : (index + 1))
-  }
+    handleSwap(index, isUp ? index - 1 : index + 1);
+  };
   const handleSubmit = (templateData) => {
     const object = {};
     templateData?.forEach((element, index) => {
@@ -145,30 +168,30 @@ const Provider = (props) => {
       staging: {
         previewComponents: object,
         prewiewSession: Date.now(),
-        isPreview: false
-      }
-    }
+        isPreview: false,
+      },
+    };
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify(data);
 
     var requestOptions = {
-      method: 'POST',
+      method: "POST",
       headers: myHeaders,
       body: raw,
-      redirect: 'follow'
+      redirect: "follow",
     };
 
-    fetch("http://localhost:7234/createArticles/" + templateName, requestOptions)
-      .then(response => response.text())
-      .then(result => {
+    fetch(url + "/createArticles/" + templateName, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
         //console.log(result)
-        setTemplateName("Template Name")
-        setTemplateData([])
+        setTemplateName("Template Name");
+        setTemplateData([]);
       })
-      .catch(error => console.log('error', error));
-  }
+      .catch((error) => console.log("error", error));
+  };
   const fetchTemplateData = async () => {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -179,10 +202,10 @@ const Provider = (props) => {
       redirect: "follow",
     };
     let data = await fetch(
-      `http://localhost:7234/getAllDetails/${templateName}?page=1&limit=20`,
+      url + `/getAllDetails/${templateName}?page=1&limit=20`,
       requestOptions
     )
-      .then((response) => response.text())
+      .then((response) => response.json())
       .then((result) => {
         return result;
       })
@@ -192,16 +215,39 @@ const Provider = (props) => {
   const handleGetTemplateData = async () => {
     const res = await fetchTemplateData();
     console.log({ res });
+    if (!res?.error) {
+      setPageList(res?.results?.data?.result);
+    }
+  };
+  const handleDashboardData = (pageList) => {
+    let previewData = pageList?.filter((e) => !e?.staging?.isPreview);
+    let publishData = pageList?.filter(
+      (e) => !e?.staging?.isPublish && e?.staging?.isPreview
+    );
+    let seoData = pageList?.filter(
+      (e) => e?.staging?.isPreview && !e?.staging?.isSEOVerified
+    );
+    setDashboardData({ previewData, publishData, seoData });
   };
   useEffect(() => {
     console.log({ templateName });
-    if (templateName !== template[0]) {
+    if (templateName !== templateNames[0]) {
+      handleGetTemplateData();
       setTemplateData(
         preDefinedTemplate?.filter((e) => e.template === templateName)[0]
           ?.components
       );
     }
   }, [templateName]);
+  useEffect(() => {
+    console.log({ role });
+    if (role !== "Select User Role") {
+      setIsAddNew(true);
+    }
+  }, [role]);
+  useEffect(() => {
+    if (pageList?.length > 0) handleDashboardData(pageList);
+  }, [pageList]);
   return (
     <Context.Provider
       value={{
@@ -222,7 +268,19 @@ const Provider = (props) => {
         handleUpdateValue,
         handleAddList,
         handleAddComponent,
-        handleSubmit
+        handleSubmit,
+        selectedTab,
+        setSelectedTab,
+        handleLogout,
+        isAddNew,
+        setIsAddNew,
+        handleAddPreview,
+        pageList,
+        dashboardData,
+        setDashboardData,
+        selectedDashboard,
+        setSelectedDashboard,
+        handleGenerateLink,
       }}
     >
       {props.children}
