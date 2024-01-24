@@ -9,7 +9,7 @@ import { Context } from '../Provider'
 import TextAreaField from './microComponents/TextAreaField'
 
 const GenerateTemplateForm = () => {
-    const { templateData } = useContext(Context)
+    const { templateData,handleSubmit,handleChange } = useContext(Context)
     console.log({ templateData });
     return (
         <div className="c-l-body">
@@ -25,7 +25,8 @@ const GenerateTemplateForm = () => {
                                         <TextAreaField key={i} i={i} size={e.size} icon={null} placeholder={e.placeholder} value={e.value} label={e.label} /> :
                                         (e.key === 'date') ? <DateField key={i} i={i} size={e.size} icon={null} placeholder={e.placeholder} value={e.value} label={e.label} /> :
                                         (e.key === 'textarea') ? <TextAreaField key={i} i={i} size={e.size} icon={null} placeholder={e.placeholder} value={e.value} label={e.label}/> :
-                                        (e.key !== 'htmlEditor' || e.key !=='images' || e.key !=='seo') ? <InputField key={i} i={i} size={e.size} icon={null} placeholder={e.placeholder} value={e.value} label={e.label}/> : ''
+                                        (e.key === 'dropdown') ? <DropDown key={i} i={i} size={e.size} icon={null} placeholder={e.placeholder} value={e.value} label={e.label} options={e.options}/> :
+                                        (e.key !== 'htmlEditor' && e.key !=='images' && e.key !=='seo') ? <InputField key={i} i={i} size={e.size} icon={null} placeholder={e.placeholder} value={e.value} label={e.label}/> : ''
                                 )
                             })}
 
@@ -37,7 +38,7 @@ const GenerateTemplateForm = () => {
                         {templateData?.map((e, i) => {
                             return (
                                 (e.key === 'htmlEditor') ? <div className="t-c-b-item">
-                                    <Editor key={i} handleValue={() => { }} i={i} data={''} />
+                                    <Editor key={i} i={i} data={''} />
                                 </div> : ''
                             )
                         })}
@@ -47,7 +48,7 @@ const GenerateTemplateForm = () => {
                         <button className="btn btn-primary">
                             <span>Cancel</span>
                         </button>
-                        <button className="btn btn-icon-left btn-success">
+                        <button className="btn btn-icon-left btn-success" onClick={() => handleSubmit(templateData)}>
                             <span>Submit</span>
                         </button>
                     </div>

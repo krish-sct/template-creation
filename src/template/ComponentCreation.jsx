@@ -8,43 +8,11 @@ import GenerateTemplateForm from './GenerateTemplateForm'
 import { Context } from '../Provider'
 
 const ComponentCreation = () => {
-    const { template, templateData, setTemplateData, handleRemoveComponent, handleUpdateValue, handleAddImg, handleAddList, handleSwap, templateName, setTemplateName } = useContext(Context)
+    const { template, templateData, setTemplateData, handleRemoveComponent, handleUpdateValue, handleAddImg, handleAddList, handleSwap, templateName, setTemplateName,handleSubmit } = useContext(Context)
     const lastDivRef = useRef(null);
     const [isHTML, setIsHTML] = useState(false)
     const handleChange = (value, i, component, componentIndex) => {
         handleUpdateValue(value, i, component, componentIndex)
-    }
-    const handleSwapUpDown = (index, isUp) => {
-        handleSwap(index, isUp ? (index - 1) : (index + 1))
-    }
-    const handleSubmit = () => {
-        const object = {};
-        templateData?.forEach((element, index) => {
-            object[element.key] = element;
-        });
-        let data = {
-            "components": object
-        }
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
-        var raw = JSON.stringify(data);
-
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
-
-        fetch("http://localhost:7234/createArticles/" + templateName, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                //console.log(result)
-                setTemplateName("Template Name")
-                setTemplateData([])
-            })
-            .catch(error => console.log('error', error));
     }
     // useEffect(() => {
     //     console.log({ templateData });

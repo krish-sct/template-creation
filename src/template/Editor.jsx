@@ -1,9 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { Context } from '../Provider';
 
-const Editor = ({ handleValue, i, data }) => {
+const Editor = ({ i, data }) => {
     const quillRef = useRef(null);
+    const { handleUpdateValue } = useContext(Context)
     const [text, setText] = useState(data || '');
 
     const modules = {
@@ -66,9 +68,9 @@ const Editor = ({ handleValue, i, data }) => {
 
     ];
 
-    const handleChange = (value) => {
+    const handleValue = (value) => {
         setText(value);
-        handleValue(value, i, '')
+        handleUpdateValue(value, i, '')
     };
     useEffect(() => {
         const quill = quillRef.current.getEditor();
@@ -94,7 +96,7 @@ const Editor = ({ handleValue, i, data }) => {
                     theme="snow"
                     modules={modules}
                     formats={formats}
-                    onChange={handleChange}
+                    onChange={handleValue}
                     value={text}
                 />
             </div>

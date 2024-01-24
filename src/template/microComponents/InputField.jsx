@@ -5,7 +5,6 @@ const getSize = (size) => {
 }
 const InputField = (props) => {
     let { i, size, icon, placeholder, value, label } = props
-    console.log({ i, size, icon, placeholder, value });
     const { handleUpdateValue } = useContext(Context)
     const handleChange = (value, i, component, componentIndex) => {
         handleUpdateValue(value, i, component, componentIndex)

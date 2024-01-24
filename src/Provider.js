@@ -38,9 +38,9 @@ const Provider = (props) => {
         newArr = prev?.map((e, i) => {
           return index === i
             ? {
-                ...e,
-                imgs: e?.imgs?.filter((_img, imgI) => componentIndex !== imgI),
-              }
+              ...e,
+              imgs: e?.imgs?.filter((_img, imgI) => componentIndex !== imgI),
+            }
             : e;
         });
       }
@@ -48,11 +48,11 @@ const Provider = (props) => {
         newArr = prev?.map((e, i) => {
           return index === i
             ? {
-                ...e,
-                lists: e?.lists?.filter(
-                  (_list, listI) => componentIndex !== listI
-                ),
-              }
+              ...e,
+              lists: e?.lists?.filter(
+                (_list, listI) => componentIndex !== listI
+              ),
+            }
             : e;
         });
       }
@@ -64,9 +64,9 @@ const Provider = (props) => {
       return prev?.map((e, i) => {
         return i === index
           ? {
-              ...e,
-              imgs: [...e?.imgs, { src: "", alt: "" }],
-            }
+            ...e,
+            imgs: [...e?.imgs, { src: "", alt: "" }],
+          }
           : e;
       });
     });
@@ -76,15 +76,15 @@ const Provider = (props) => {
       return prev?.map((e, i) => {
         return i === index
           ? {
-              ...e,
-              lists: [
-                ...e?.lists,
-                {
-                  key: "listText",
-                  value: "",
-                },
-              ],
-            }
+            ...e,
+            lists: [
+              ...e?.lists,
+              {
+                key: "listText",
+                value: "",
+              },
+            ],
+          }
           : e;
       });
     });
@@ -102,11 +102,11 @@ const Provider = (props) => {
         newData = prev?.map((e, i) => {
           return i === index
             ? {
-                ...e,
-                imgs: e?.imgs?.map((img, imgI) => {
-                  return imgI === componentIndex ? value : img;
-                }),
-              }
+              ...e,
+              imgs: e?.imgs?.map((img, imgI) => {
+                return imgI === componentIndex ? value : img;
+              }),
+            }
             : e;
         });
       }
@@ -115,11 +115,11 @@ const Provider = (props) => {
         newData = prev?.map((e, i) => {
           return i === index
             ? {
-                ...e,
-                lists: e?.lists?.map((list, listI) => {
-                  return listI === componentIndex ? data : list;
-                }),
-              }
+              ...e,
+              lists: e?.lists?.map((list, listI) => {
+                return listI === componentIndex ? data : list;
+              }),
+            }
             : e;
         });
       }
@@ -132,6 +132,43 @@ const Provider = (props) => {
       return data;
     });
   };
+  const handleSwapUpDown = (index, isUp) => {
+    handleSwap(index, isUp ? (index - 1) : (index + 1))
+  }
+  const handleSubmit = (templateData) => {
+    const object = {};
+    templateData?.forEach((element, index) => {
+      object[element.key] = element;
+    });
+    let data = {
+      components: [],
+      staging: {
+        previewComponents: object,
+        prewiewSession: Date.now(),
+        isPreview: false
+      }
+    }
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify(data);
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    fetch("http://localhost:7234/createArticles/" + templateName, requestOptions)
+      .then(response => response.text())
+      .then(result => {
+        //console.log(result)
+        setTemplateName("Template Name")
+        setTemplateData([])
+      })
+      .catch(error => console.log('error', error));
+  }
   const fetchTemplateData = async () => {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -185,6 +222,7 @@ const Provider = (props) => {
         handleUpdateValue,
         handleAddList,
         handleAddComponent,
+        handleSubmit
       }}
     >
       {props.children}

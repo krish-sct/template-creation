@@ -186,15 +186,6 @@ export const preDefinedTemplate = [
         size: "sm",
       },
       {
-        tag: "input",
-        type: "date",
-        key: "date",
-        value: "",
-        description: "",
-        placeholder: "Enter the date",
-        size: "sm",
-      },
-      {
         tag: "textarea",
         type: "text",
         key: "description",
@@ -1085,7 +1076,7 @@ export const preDefinedTemplate = [
       {
         tag: "select",
         type: "text",
-        key: "category",
+        key: "dropdown",
         value: "",
         description: "",
         placeholder: "Select the Category",
