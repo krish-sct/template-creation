@@ -44,7 +44,9 @@ const Provider = (props) => {
     templateName =
       templateName === "News" ? "newses" : templateName.toLowerCase();
     let domain = "http://192.168.1.220:3000/stage/";
-    return `${domain}${stage}/${templateName}/${id}- ${Date.now()}`;
+    let link = `${domain}${stage}/${templateName}/${id}-${Date.now()}`;
+    window.open(link);
+    return link;
   };
   const handleAddComponent = (component) => {
     setTemplateData((prev) => {
@@ -159,14 +161,14 @@ const Provider = (props) => {
     handleSwap(index, isUp ? index - 1 : index + 1);
   };
   const handleSubmit = (templateData) => {
-    const object = {};
+    const object = [];
     templateData?.forEach((element, index) => {
-      object[element.key] = element;
+      object.push(element);
     });
     let data = {
       components: [],
       staging: {
-        previewComponents: object,
+        previewComponent: object,
         prewiewSession: Date.now(),
         isPreview: false,
       },
@@ -186,9 +188,14 @@ const Provider = (props) => {
     fetch(url + "/createArticles/" + templateName, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        //console.log(result)
+        console.log({ result });
         setTemplateName("Template Name");
         setTemplateData([]);
+        const link = handleGenerateLink(
+          "preview",
+          templateName,
+          result?.results?.data?._id
+        );
       })
       .catch((error) => console.log("error", error));
   };

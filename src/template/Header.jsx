@@ -10,7 +10,7 @@ const Header = () => {
                 <div className="h-l-item">
                     <button className="btn btn-icon-left btn-danger" onClick={handleLogout}>
                         <span className="material-symbols-rounded"> arrow_back </span>
-                        <span>Exit</span>
+                        <span>Close</span>
                     </button>
                 </div>
             </div>
@@ -21,6 +21,9 @@ const Header = () => {
             </div>
             <div className="h-rigth">
                 <div className="h-l-item">
+                    <button className="btn btn-primary">
+                        <span>{role}</span>
+                    </button>
                     {
                         (templateName === "Template Name" || role === 'previewer') ? '' :
 

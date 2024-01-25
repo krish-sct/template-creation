@@ -2,10 +2,13 @@ import React, { useContext } from "react";
 import { Context } from "../../Provider";
 
 const DashboardTab = () => {
-    const { dashboardData, selectedDashboard, setSelectedDashboard } = useContext(Context);
+    const { dashboardData, selectedDashboard, setSelectedDashboard, role } = useContext(Context);
     // useEffect(() => {
     //     console.log({ dashboardData });
     // }, [dashboardData])
+    const handleChange = (tab) => {
+
+    }
     return (
         <div className="t-c-head">
             <button className={`t-c-h-item ${selectedDashboard === 0 ? 'active' : ''} `} onClick={() => setSelectedDashboard(0)}>
@@ -20,7 +23,7 @@ const DashboardTab = () => {
                 )}{" "}
                 <div className="inner-shadow"> </div>
             </button>
-            <button className={`t-c-h-item ${selectedDashboard === 1 ? 'active' : ''}`} onClick={() => setSelectedDashboard(1)}>
+            <button className={`t-c-h-item ${selectedDashboard === 1 ? 'active' : ''}`} onClick={() => role == 'publisher' ? setSelectedDashboard(1) : true}>
                 {" "}
                 Pending for Publish{" "}
                 {dashboardData?.publishData?.length ?
@@ -28,7 +31,7 @@ const DashboardTab = () => {
                     : ''}
                 <div className="inner-shadow"></div>
             </button>
-            <button className={`t-c-h-item ${selectedDashboard === 2 ? 'active' : ''}`} onClick={() => setSelectedDashboard(2)}>
+            <button className={`t-c-h-item ${selectedDashboard === 2 ? 'active' : ''}`} onClick={() => role == 'seo' ? setSelectedDashboard(2) : true}>
                 {" "}
                 Pending for SEO{" "}
                 {dashboardData?.seoData?.length ?

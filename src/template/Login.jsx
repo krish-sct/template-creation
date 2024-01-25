@@ -36,10 +36,10 @@ const Login = () => {
                     onChange={handleChange}
                 >
                     <MenuItem value={'Select User Role'} selected disabled>Select User Role</MenuItem>
-                    <MenuItem value={'creator'}>Creator</MenuItem>
-                    <MenuItem value={'previewer'}>Previewer</MenuItem>
-                    <MenuItem value={'publisher'}>Publisher</MenuItem>
-                    <MenuItem value={'seo'}>SEO</MenuItem>
+                    <MenuItem value={'creator'}>Sam</MenuItem>
+                    <MenuItem value={'previewer'}>Ram</MenuItem>
+                    <MenuItem value={'publisher'}>Som</MenuItem>
+                    <MenuItem value={'seo'}>Kumar</MenuItem>
                 </Select>
                 <br />
                 {/* <Select className='pd mr' label='Template Name' size='small' value={templateName} onChange={(e) => setTemplateName(e?.target?.value)}>

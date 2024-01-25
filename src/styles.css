@@ -221,3 +221,11 @@
   color: blue;
   text-decoration: underline;
 }
+.chip {
+  font-size: 14px;
+  padding: 6px;
+  background-color: turquoise;
+  margin-top: auto;
+  border-radius: 20%;
+  color: white;
+}
