@@ -4,9 +4,32 @@ import { useEffect } from 'react'
 import { Context } from '../Provider'
 
 const Login = () => {
+    let roleData = 'Select User Role'
     const { setIsLoged, role, setRole, templateName, setTemplateName, templateNames } = useContext(Context)
     const handleChange = (e) => {
-        setRole(e?.target?.value)
+        let name = e?.target?.value?.toLowerCase()
+        setRole(name)
+    }
+    const handleLogin = () => {
+        let isUser = false
+        if (role === 'sam') {
+            setRole('creator');
+            isUser = true;
+        }
+        if (role === 'ram') {
+            setRole('previewer');
+            isUser = true;
+        }
+        if (role === 'som') {
+            setRole('publisher');
+            isUser = true;
+        }
+        if (role === 'kumar') {
+            setRole('seo');
+            isUser = true;
+        }
+        if (isUser) setIsLoged(true)
+        else alert('Not a valid user')
     }
     const handleDate = async () => {
         const apiKey = "95112ae8dd285b";
@@ -27,7 +50,15 @@ const Login = () => {
                 <div>
                     <h3>Admin Panel</h3>
                 </div>
-                <Select
+                <br />
+                <TextField className='pd mr'
+                    size='small'
+                    value={role === roleData ? '' : role}
+                    label="User Name"
+                    placeholder='User Name'
+                    onChange={handleChange} />
+
+                {/* <Select
                 className='pd mr'
                     defaultValue={role}
                     size='small'
@@ -40,7 +71,7 @@ const Login = () => {
                     <MenuItem value={'previewer'}>Ram</MenuItem>
                     <MenuItem value={'publisher'}>Som</MenuItem>
                     <MenuItem value={'seo'}>Kumar</MenuItem>
-                </Select>
+                </Select> */}
                 <br />
                 {/* <Select className='pd mr' label='Template Name' size='small' value={templateName} onChange={(e) => setTemplateName(e?.target?.value)}>
                     {templateNames?.map((e, i) => {
@@ -49,7 +80,7 @@ const Login = () => {
             </Select> */}
                 <div>
                     <br />
-                    <button className='login-btn pointer' disabled={role === "Select User Role"} onClick={() => setIsLoged(true)}>Login</button>
+                    <button className='login-btn pointer' disabled={role === "Select User Role"} onClick={handleLogin}>Login</button>
                 </div>
             </main>
         </div>
