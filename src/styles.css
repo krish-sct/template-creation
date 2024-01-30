@@ -229,3 +229,9 @@
   border-radius: 20%;
   color: white;
 }
+.btn-edit {
+  height: 24px;
+  font-size: 12px;
+  padding: 8px;
+  margin-top: 8px;
+}
