@@ -7,9 +7,10 @@ import DropDown from './microComponents/DropDown'
 import Editor from './Editor'
 import { Context } from '../Provider'
 import TextAreaField from './microComponents/TextAreaField'
+import { TextField } from '@mui/material'
 
 const GenerateTemplateForm = () => {
-    const { templateData, handleSubmit, selectedTab } = useContext(Context)
+    const { templateData, handleSubmit, selectedTab, isEdit, handleLogout, setToEmail } = useContext(Context)
     console.log({ selectedTab });
     console.log({ templateData });
     return (
@@ -44,8 +45,8 @@ const GenerateTemplateForm = () => {
                                 </div>
                                 {templateData?.map((e, i) => {
                                     return (
-                                        (e.key === 'htmlEditor') ? <div className="t-c-b-item">
-                                            <Editor key={i} i={i} data={''} />
+                                        (e.key === 'htmlEditor') ? <div key={i} className="t-c-b-item">
+                                            <Editor key={i} i={i} data={e?.value} />
                                         </div> : ''
                                     )
                                 })}
@@ -54,11 +55,12 @@ const GenerateTemplateForm = () => {
 
                     </>} 
                     <div className="t-c-b-footer">
-                        <button className="btn btn-primary">
+                        <TextField size='small' className='email-input' placeholder='Kindly enter E-mail id to send notification' onChange={(e) => setToEmail(e?.target?.value)} />
+                        <button className="btn btn-primary" onClick={() => handleLogout()}>
                             <span>Cancel</span>
                         </button>
                         <button className="btn btn-icon-left btn-success" onClick={() => handleSubmit(templateData)}>
-                            <span>Submit</span>
+                            <span>{!isEdit ? 'Submit' : 'Update'}</span>
                         </button>
                     </div>
                 </div>

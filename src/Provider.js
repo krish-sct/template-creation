@@ -17,6 +17,8 @@ let templateNames = [
   "Testimonials",
   "Videos",
 ];
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
 const Provider = (props) => {
   const [isLoged, setIsLoged] = useState(false);
   const [role, setRole] = useState("Select User Role");
@@ -27,10 +29,14 @@ const Provider = (props) => {
   const [pageList, setPageList] = useState([]);
   const [dashboardData, setDashboardData] = useState({});
   const [selectedDashboard, setSelectedDashboard] = useState(0);
+  const [isEdit, setIsEdit] = useState(false);
+  const [editId, setEditId] = useState(null);
+  const [toEmail, setToEmail] = useState("");
   const handleAddPreview = () => {
     if (isAddNew) {
       setIsAddNew(false);
     }
+    setIsEdit(false);
   };
   const handleLogout = () => {
     setIsLoged(false);
@@ -39,12 +45,16 @@ const Provider = (props) => {
     setTemplateName("Template Name");
     setDashboardData({});
     setPageList([]);
+    setIsEdit(false);
   };
   const handleGenerateLink = (stage, templateName, id) => {
     templateName =
       templateName === "News" ? "newses" : templateName.toLowerCase();
     let domain = "http://192.168.1.220:3000/stage/";
     let link = `${domain}${stage}/${templateName}/${id}-${Date.now()}`;
+    toEmail !== ""
+      ? sendEmailNotification("Preview link", stage + " : " + link)
+      : true;
     window.open(link);
     return link;
   };
@@ -160,22 +170,12 @@ const Provider = (props) => {
   const handleSwapUpDown = (index, isUp) => {
     handleSwap(index, isUp ? index - 1 : index + 1);
   };
-  const handleSubmit = (templateData) => {
-    const object = [];
-    templateData?.forEach((element, index) => {
-      object.push(element);
-    });
+  const sendEmailNotification = (subject, message) => {
     let data = {
-      components: [],
-      staging: {
-        previewComponent: object,
-        prewiewSession: Date.now(),
-        isPreview: false,
-      },
+      recipient: toEmail,
+      subject,
+      message,
     };
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
     var raw = JSON.stringify(data);
 
     var requestOptions = {
@@ -184,13 +184,38 @@ const Provider = (props) => {
       body: raw,
       redirect: "follow",
     };
+    fetch(url + "/notification/email", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log({ result });
+      })
+      .catch((error) => console.log("error", error));
+    setToEmail("");
+  };
+  const handleUpdate = (templateData) => {
+    let data = {
+      staging: {
+        previewComponent: templateData,
+        prewiewSession: Date.now(),
+        isPreview: false,
+      },
+    };
+    var raw = JSON.stringify(data);
 
-    fetch(url + "/createArticles/" + templateName, requestOptions)
+    var requestOptions = {
+      method: "PUT",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+    fetch(url + "/" + templateName + "/" + editId, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         console.log({ result });
         setTemplateName("Template Name");
         setTemplateData([]);
+        setIsEdit(false);
+        setEditId(null);
         const link = handleGenerateLink(
           "preview",
           templateName,
@@ -198,6 +223,49 @@ const Provider = (props) => {
         );
       })
       .catch((error) => console.log("error", error));
+  };
+  const handleSubmit = (templateData) => {
+    //console.log({ isEdit, templateData });
+    if (isEdit) {
+      handleUpdate(templateData);
+      return;
+    } else {
+      const object = [];
+      templateData?.forEach((element, index) => {
+        object.push(element);
+      });
+      let data = {
+        components: [],
+        staging: {
+          previewComponent: object,
+          prewiewSession: Date.now(),
+          isPreview: false,
+        },
+      };
+
+      var raw = JSON.stringify(data);
+
+      var requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+      };
+
+      fetch(url + "/createPage/" + templateName, requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+          console.log({ result });
+          setTemplateName("Template Name");
+          setTemplateData([]);
+          const link = handleGenerateLink(
+            "preview",
+            templateName,
+            result?.results?.data?._id
+          );
+        })
+        .catch((error) => console.log("error", error));
+    }
   };
   const fetchTemplateData = async () => {
     var myHeaders = new Headers();
@@ -209,7 +277,7 @@ const Provider = (props) => {
       redirect: "follow",
     };
     let data = await fetch(
-      url + `/getAllDetails/${templateName}?page=1&limit=20`,
+      url + `/getAllPages/${templateName}?page=1&limit=20`,
       requestOptions
     )
       .then((response) => response.json())
@@ -288,6 +356,12 @@ const Provider = (props) => {
         selectedDashboard,
         setSelectedDashboard,
         handleGenerateLink,
+        isEdit,
+        setIsEdit,
+        editId,
+        setEditId,
+        toEmail,
+        setToEmail,
       }}
     >
       {props.children}

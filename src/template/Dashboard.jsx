@@ -2,22 +2,22 @@ import React, { useContext, useEffect } from 'react'
 import { Context } from '../Provider'
 import DashboardTab from './microComponents/DashboardTab'
 import TemplateHead from './microComponents/TemplateHead'
-import { Edit } from '@mui/icons-material'
 
 const Dashboard = () => {
-    const { dashboardData, selectedDashboard, handleGenerateLink, templateName } = useContext(Context)
+    const { dashboardData, selectedDashboard, handleGenerateLink, setEditId, templateName, role, setTemplateData, setTemplateName, setIsEdit } = useContext(Context)
     const handleStageKey = (selectedDashboard) => {
         return selectedDashboard === 0 ? 'previewData' : selectedDashboard === 1 ? 'publishData' : 'seoData'
     }
     const handleStage = (selectedDashboard) => {
         return selectedDashboard === 0 ? 'preview' : selectedDashboard === 1 ? 'publish' : 'seo'
     }
-    const handleEdit = () => {
-
+    const handleEdit = (data) => {
+        console.log({ data });
+        setEditId(data?._id)
+        setTemplateData(data?.staging?.previewComponent)
+        setIsEdit(true)
     }
-    useEffect(() => {
-        console.log({ dashboardData });
-    }, [dashboardData])
+
     return (
         <div className="c-l-body">
             <div className="tab-container">
@@ -31,9 +31,11 @@ const Dashboard = () => {
                                 <div className='list-header pointer' onClick={() => handleGenerateLink(handleStage(selectedDashboard), templateName, e?._id)}>
                                     {data?.value}
                                 </div>
-                                <button className="btn-edit pointer" onClick={() => handleEdit()}>
+                                {(role === 'publisher' || role === 'creator') ?
+                                    <button className="btn-edit pointer" onClick={() => handleEdit(e)}>
                                     <span>Edit</span>
-                                </button>
+                                    </button>                                
+                                    : ''}
                             </div>
                         })}
                     </div>

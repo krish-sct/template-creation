@@ -235,3 +235,9 @@
   padding: 8px;
   margin-top: 8px;
 }
+.email-input {
+  background-color: whitesmoke;
+  width: 50%;
+  border: none;
+  border-radius: 8px;
+}

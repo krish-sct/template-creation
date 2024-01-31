@@ -6,7 +6,7 @@ import Dashboard from './Dashboard'
 
 
 const Home = () => {
-    const { setTemplateName, role, templateName, templateNames, isAddNew } = useContext(Context)
+    const { setTemplateName, role, templateName, templateNames, isAddNew, isEdit } = useContext(Context)
 
     return (
         <div className='flex' style={{ width: "100%" }}>
@@ -27,7 +27,7 @@ const Home = () => {
             <div className='main'>
                 <div className="custom-layout-page">
                     <Header />
-                    {isAddNew === false ? <GenerateTemplateForm />
+                    {(isAddNew === false || isEdit) ? <GenerateTemplateForm />
                         : <div><Dashboard /> </div>
                     }
 
